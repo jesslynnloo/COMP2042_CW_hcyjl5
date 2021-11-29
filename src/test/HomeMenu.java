@@ -61,6 +61,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private boolean startClicked;
     private boolean menuClicked;
 
+    private int stringHeight;
+
 
     public HomeMenu(GameFrame owner,Dimension area){
 
@@ -117,8 +119,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.translate(x,y);
 
         //methods calls
-        drawText(g2d);
-        drawBothButton(g2d);
+        drawAllText(g2d);
+        drawAllButton(g2d);
         //end of methods calls
 
         g2d.translate(-x,-y);
@@ -147,40 +149,35 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.setColor(prev);
     }
 
-    private void drawText(Graphics2D g2d){
+    private void drawAllText(Graphics2D g2d){
+        drawText(g2d, greetingsFont, GREETINGS);
+        drawText(g2d, gameTitleFont, GAME_TITLE);
+        drawText(g2d, creditsFont, CREDITS);
+    }
 
+    private void drawText(Graphics2D g2d, Font font, String text){
         g2d.setColor(TEXT_COLOR);
 
         FontRenderContext frc = g2d.getFontRenderContext();
+        Rectangle2D textRect = font.getStringBounds(text, frc);
 
-        Rectangle2D greetingsRect = greetingsFont.getStringBounds(GREETINGS,frc);
-        Rectangle2D gameTitleRect = gameTitleFont.getStringBounds(GAME_TITLE,frc);
-        Rectangle2D creditsRect = creditsFont.getStringBounds(CREDITS,frc);
+        int sX;
 
-        int sX,sY;
+        sX = (int)(menuFace.getWidth() - textRect.getWidth()) / 2;
 
-        sX = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
-        sY = (int)(menuFace.getHeight() / 4);
+        if(text.equals(GREETINGS)){
+            stringHeight = (int)(menuFace.getHeight() / 4);
+        }
+        else{
+            stringHeight += (int) textRect.getHeight() * 1.1;//add 10% of String height between the two strings
+        }
 
-        g2d.setFont(greetingsFont);
-        g2d.drawString(GREETINGS,sX,sY);
-
-        sX = (int)(menuFace.getWidth() - gameTitleRect.getWidth()) / 2;
-        sY += (int) gameTitleRect.getHeight() * 1.1;//add 10% of String height between the two strings
-
-        g2d.setFont(gameTitleFont);
-        g2d.drawString(GAME_TITLE,sX,sY);
-
-        sX = (int)(menuFace.getWidth() - creditsRect.getWidth()) / 2;
-        sY += (int) creditsRect.getHeight() * 1.1;
-
-        g2d.setFont(creditsFont);
-        g2d.drawString(CREDITS,sX,sY);
-
+        g2d.setFont(font);
+        g2d.drawString(text,sX,stringHeight);
 
     }
 
-    private void drawBothButton(Graphics2D g2d){
+    private void drawAllButton(Graphics2D g2d){
         drawButton(g2d, startButton, START_TEXT, startClicked);
         drawButton(g2d, menuButton, MENU_TEXT, menuClicked);
     }
