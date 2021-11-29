@@ -118,7 +118,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         //methods calls
         drawText(g2d);
-        drawButton(g2d);
+        drawBothButton(g2d);
         //end of methods calls
 
         g2d.translate(-x,-y);
@@ -180,72 +180,52 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
-    private void drawButton(Graphics2D g2d){
+    private void drawBothButton(Graphics2D g2d){
+        drawButton(g2d, startButton, START_TEXT, startClicked);
+        drawButton(g2d, menuButton, MENU_TEXT, menuClicked);
+    }
 
+    private void drawButton(Graphics2D g2d, Rectangle button, String buttonText, boolean buttonClicked){
         FontRenderContext frc = g2d.getFontRenderContext();
+        Rectangle2D txtRect;
+        int x = 0, y = 0;
 
-        Rectangle2D txtRect = buttonFont.getStringBounds(START_TEXT,frc);
-        Rectangle2D mTxtRect = buttonFont.getStringBounds(MENU_TEXT,frc);
+        if(buttonText.equals(START_TEXT)){
+            x = (menuFace.width - startButton.width) / 2;
+            y =(int) ((menuFace.height - startButton.height) * 0.8);
+        }
 
+	    else if(buttonText.equals(MENU_TEXT)){
+            x = startButton.x;
+            y = startButton.y;
+
+            y *= 1.2;
+        }
+
+        txtRect = buttonFont.getStringBounds(buttonText,frc);
         g2d.setFont(buttonFont);
 
-        int x = (menuFace.width - startButton.width) / 2;
-        int y =(int) ((menuFace.height - startButton.height) * 0.8);
+        button.setLocation(x,y);
 
-        startButton.setLocation(x,y);
+        x = (int)(button.getWidth() - txtRect.getWidth()) / 2;
+        y = (int)(button.getHeight() - txtRect.getHeight()) / 2;
 
-        x = (int)(startButton.getWidth() - txtRect.getWidth()) / 2;
-        y = (int)(startButton.getHeight() - txtRect.getHeight()) / 2;
+        x += button.x;
+        y += button.y + (startButton.height * 0.9);
 
-        x += startButton.x;
-        y += startButton.y + (startButton.height * 0.9);
-
-
-
-
-        if(startClicked){
-            Color tmp = g2d.getColor();
-            g2d.setColor(CLICKED_BUTTON_COLOR);
-            g2d.draw(startButton);
-            g2d.setColor(CLICKED_TEXT);
-            g2d.drawString(START_TEXT,x,y);
-            g2d.setColor(tmp);
-        }
-        else{
-            g2d.draw(startButton);
-            g2d.drawString(START_TEXT,x,y);
-        }
-
-        x = startButton.x;
-        y = startButton.y;
-
-        y *= 1.2;
-
-        menuButton.setLocation(x,y);
-
-
-
-
-        x = (int)(menuButton.getWidth() - mTxtRect.getWidth()) / 2;
-        y = (int)(menuButton.getHeight() - mTxtRect.getHeight()) / 2;
-
-        x += menuButton.x;
-        y += menuButton.y + (startButton.height * 0.9);
-
-        if(menuClicked){
+        if(buttonClicked){
             Color tmp = g2d.getColor();
 
             g2d.setColor(CLICKED_BUTTON_COLOR);
-            g2d.draw(menuButton);
+            g2d.draw(button);
             g2d.setColor(CLICKED_TEXT);
-            g2d.drawString(MENU_TEXT,x,y);
+            g2d.drawString(buttonText,x,y);
             g2d.setColor(tmp);
         }
         else{
-            g2d.draw(menuButton);
-            g2d.drawString(MENU_TEXT,x,y);
+            g2d.draw(button);
+            g2d.drawString(buttonText,x,y);
         }
-
     }
 
     @Override
