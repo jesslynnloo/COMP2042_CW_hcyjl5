@@ -17,7 +17,6 @@
  */
 package test.view;
 
-import test.view.GameFrame;
 import test.controller.HomeMenuController;
 import javax.swing.*;
 import java.awt.*;
@@ -61,17 +60,10 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     private Font creditsFont;
     private Font buttonFont;
 
-
-
     private GameFrame owner;
-
-
-
-
 
     private int stringHeight;
     private HomeMenuController homeMenuController = new HomeMenuController(this);
-
 
     public HomeMenuView(GameFrame owner, Dimension area){
         this.setFocusable(true);
@@ -96,16 +88,11 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
         creditsFont = new Font("Monospaced",Font.PLAIN,10);
         buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
-
-
-
     }
-
 
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
     }
-
 
     public void drawMenu(Graphics2D g2d){
 
@@ -290,9 +277,5 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 
     public void settingDefaultCursor () {
         this.setCursor(Cursor.getDefaultCursor());
-    }
-
-    public void startGameBoard () {
-        owner.enableGameBoard();
     }
 }

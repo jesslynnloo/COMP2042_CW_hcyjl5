@@ -22,23 +22,13 @@ import test.model.Brick;
 import test.model.Player;
 import test.model.Wall;
 import test.view.DebugConsole;
+import test.view.PauseMenuView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.font.FontRenderContext;
-
-
 
 public class GameBoard extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
-
-    private static final String CONTINUE = "Continue";
-    private static final String RESTART = "Restart";
-    private static final String EXIT = "Exit";
-    private static final String PAUSE = "Pause Menu";
-    private static final int TEXT_SIZE = 30;
-    private static final Color MENU_COLOR = new Color(0,255,0);
-
 
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
@@ -53,26 +43,14 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private boolean showPauseMenu;
 
-    private Font menuFont;
-
-    private Rectangle continueButtonRect;
-    private Rectangle exitButtonRect;
-    private Rectangle restartButtonRect;
-    private int strLen;
-
     private DebugConsole debugConsole;
-
+    private PauseMenuView pauseMenuView;
 
     public GameBoard(JFrame owner){
         super();
+        pauseMenuView = new PauseMenuView(owner);
 
-        strLen = 0;
         showPauseMenu = false;
-
-
-
-        menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
-
 
         this.initialize();
         message = "";
@@ -143,7 +121,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         drawPlayer(wall.getPlayer(),g2d);
 
         if(showPauseMenu)
-            drawMenu(g2d);
+            pauseMenuView.drawMenu(g2d);
 
         Toolkit.getDefaultToolkit().sync();
     }
@@ -195,80 +173,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
-    private void drawMenu(Graphics2D g2d){
-        obscureGameBoard(g2d);
-        drawPauseMenu(g2d);
-    }
-
-    private void obscureGameBoard(Graphics2D g2d){
-
-        Composite tmp = g2d.getComposite();
-        Color tmpColor = g2d.getColor();
-
-        AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.55f);
-        g2d.setComposite(ac);
-
-        g2d.setColor(Color.BLACK);
-        g2d.fillRect(0,0,DEF_WIDTH,DEF_HEIGHT);
-
-        g2d.setComposite(tmp);
-        g2d.setColor(tmpColor);
-    }
-
-    private void drawPauseMenu(Graphics2D g2d){
-        Font tmpFont = g2d.getFont();
-        Color tmpColor = g2d.getColor();
-
-
-        g2d.setFont(menuFont);
-        g2d.setColor(MENU_COLOR);
-
-        if(strLen == 0){
-            FontRenderContext frc = g2d.getFontRenderContext();
-            strLen = menuFont.getStringBounds(PAUSE,frc).getBounds().width;
-        }
-
-        int x = (this.getWidth() - strLen) / 2;
-        int y = this.getHeight() / 10;
-
-        g2d.drawString(PAUSE,x,y);
-
-        x = this.getWidth() / 8;
-        y = this.getHeight() / 4;
-
-
-        if(continueButtonRect == null){
-            FontRenderContext frc = g2d.getFontRenderContext();
-            continueButtonRect = menuFont.getStringBounds(CONTINUE,frc).getBounds();
-            continueButtonRect.setLocation(x,y-continueButtonRect.height);
-        }
-
-        g2d.drawString(CONTINUE,x,y);
-
-        y *= 2;
-
-        if(restartButtonRect == null){
-            restartButtonRect = (Rectangle) continueButtonRect.clone();
-            restartButtonRect.setLocation(x,y-restartButtonRect.height);
-        }
-
-        g2d.drawString(RESTART,x,y);
-
-        y *= 3.0/2;
-
-        if(exitButtonRect == null){
-            exitButtonRect = (Rectangle) continueButtonRect.clone();
-            exitButtonRect.setLocation(x,y-exitButtonRect.height);
-        }
-
-        g2d.drawString(EXIT,x,y);
-
-
-
-        g2d.setFont(tmpFont);
-        g2d.setColor(tmpColor);
-    }
-
     @Override
     public void keyTyped(KeyEvent keyEvent) {
     }
@@ -312,18 +216,18 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         Point p = mouseEvent.getPoint();
         if(!showPauseMenu)
             return;
-        if(continueButtonRect.contains(p)){
+        if(pauseMenuView.getContinueButtonRect().contains(p)){
             showPauseMenu = false;
             repaint();
         }
-        else if(restartButtonRect.contains(p)){
+        else if(pauseMenuView.getRestartButtonRect().contains(p)){
             message = "Restarting Game...";
             wall.ballReset();
             wall.wallReset();
             showPauseMenu = false;
             repaint();
         }
-        else if(exitButtonRect.contains(p)){
+        else if(pauseMenuView.getExitButtonRect().contains(p)){
             System.exit(0);
         }
 
@@ -357,14 +261,14 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(exitButtonRect != null && showPauseMenu) {
-            if (exitButtonRect.contains(p) || continueButtonRect.contains(p) || restartButtonRect.contains(p))
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        if(pauseMenuView.getExitButtonRect() != null && showPauseMenu) {
+            if (pauseMenuView.getExitButtonRect().contains(p) || pauseMenuView.getContinueButtonRect().contains(p) || pauseMenuView.getRestartButtonRect().contains(p))
+                pauseMenuView.settingHandCursor();
             else
-                this.setCursor(Cursor.getDefaultCursor());
+                pauseMenuView.settingDefaultCursor();
         }
         else{
-            this.setCursor(Cursor.getDefaultCursor());
+            pauseMenuView.settingDefaultCursor();
         }
     }
 
@@ -372,6 +276,22 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         gameTimer.stop();
         message = "Focus Lost";
         repaint();
+    }
+
+    public static int getDefWidth() {
+        return DEF_WIDTH;
+    }
+
+    public static int getDefHeight() {
+        return DEF_HEIGHT;
+    }
+
+    public boolean isShowPauseMenu() {
+        return showPauseMenu;
+    }
+
+    public void setShowPauseMenu(boolean showPauseMenu) {
+        this.showPauseMenu = showPauseMenu;
     }
 
 }
