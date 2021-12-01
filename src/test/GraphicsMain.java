@@ -17,6 +17,8 @@
  */
 package test;
 
+import test.view.GameFrame;
+
 import java.awt.*;
 
 

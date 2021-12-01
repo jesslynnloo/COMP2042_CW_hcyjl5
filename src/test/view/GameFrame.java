@@ -15,14 +15,15 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package test.view;
+
+import test.controller.GameBoard;
+import test.controller.HomeMenuController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-import java.awt.event.WindowListener;
 
 
 public class GameFrame extends JFrame implements WindowFocusListener {
@@ -30,7 +31,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private static final String DEF_TITLE = "Brick Destroy";
 
     private GameBoard gameBoard;
-    private HomeMenu homeMenu;
+    private HomeMenuController homeMenuController;
+    private HomeMenuView homeMenuView;
 
     private boolean gaming;
 
@@ -43,9 +45,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         gameBoard = new GameBoard(this);
 
-        homeMenu = new HomeMenu(this,new Dimension(450,300));
+        homeMenuView = new HomeMenuView(this, new Dimension(450, 300));
+        homeMenuController = new HomeMenuController(homeMenuView);
 
-        this.add(homeMenu,BorderLayout.CENTER);
+        this.add(homeMenuView,BorderLayout.CENTER);
 
         this.setUndecorated(true);
 
@@ -62,7 +65,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public void enableGameBoard(){
         this.dispose();
-        this.remove(homeMenu);
+        this.remove(homeMenuView);
         this.add(gameBoard,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
