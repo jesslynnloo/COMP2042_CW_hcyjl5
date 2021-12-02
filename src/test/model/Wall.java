@@ -17,7 +17,7 @@
  */
 package test.model;
 
-import test.model.*;
+import test.controller.*;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

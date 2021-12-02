@@ -1,23 +1,6 @@
-/*
- *  Brick Destroy - A simple Arcade video game
- *   Copyright (C) 2017  Filippo Ranza
- *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package test.view;
 
-import test.controller.GameBoard;
+import test.controller.GameController;
 import test.controller.HomeMenuController;
 
 import javax.swing.*;
@@ -30,7 +13,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
 
-    private GameBoard gameBoard;
+    private GameView view;
+    private GameController gameController;
     private HomeMenuController homeMenuController;
     private HomeMenuView homeMenuView;
 
@@ -43,7 +27,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         this.setLayout(new BorderLayout());
 
-        gameBoard = new GameBoard(this);
+        view = new GameView(this);
+        gameController = new GameController(view);
 
         homeMenuView = new HomeMenuView(this, new Dimension(450, 300));
         homeMenuController = new HomeMenuController(homeMenuView);
@@ -66,7 +51,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void enableGameBoard(){
         this.dispose();
         this.remove(homeMenuView);
-        this.add(gameBoard,BorderLayout.CENTER);
+        this.add(view,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
         /*to avoid problems with graphics focus controller is added here*/
@@ -98,7 +83,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     @Override
     public void windowLostFocus(WindowEvent windowEvent) {
         if(gaming)
-            gameBoard.onLostFocus();
+            gameController.onLostFocus();
 
     }
 }

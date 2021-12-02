@@ -17,7 +17,8 @@
  */
 package test.view;
 
-import test.controller.GameBoard;
+
+import test.controller.GameController;
 import test.model.Ball;
 import test.model.Wall;
 
@@ -33,15 +34,16 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     private JFrame owner;
     private DebugPanel debugPanel;
-    private GameBoard gameBoard;
+//    private GameBoard gameBoard;
+    private GameController gameController;
     private Wall wall;
 
 
-    public DebugConsole(JFrame owner,Wall wall,GameBoard gameBoard){
+    public DebugConsole(JFrame owner, Wall wall, GameController gameController){
 
         this.wall = wall;
         this.owner = owner;
-        this.gameBoard = gameBoard;
+        this.gameController = gameController;
         initialize();
 
         debugPanel = new DebugPanel(wall);
@@ -75,7 +77,7 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     @Override
     public void windowClosing(WindowEvent windowEvent) {
-        gameBoard.repaint();
+        gameController.repainting();
     }
 
     @Override
