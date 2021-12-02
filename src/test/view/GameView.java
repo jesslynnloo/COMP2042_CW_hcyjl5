@@ -5,7 +5,6 @@ import test.model.Ball;
 import test.model.Brick;
 import test.model.Player;
 import test.model.Wall;
-import test.view.DebugConsole;
 
 import javax.swing.*;
 import java.awt.*;
