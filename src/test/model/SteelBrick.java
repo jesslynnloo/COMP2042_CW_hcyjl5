@@ -17,6 +17,7 @@
  */
 package test.model;
 
+import test.controller.HighScoreController;
 import test.model.Brick;
 
 import java.awt.*;
@@ -31,14 +32,18 @@ public class SteelBrick extends Brick {
     private static final Color DEF_BORDER = Color.BLACK;
     private static final int STEEL_STRENGTH = 1;
     private static final double STEEL_PROBABILITY = 0.4;
+    private static final int SCORE_FOR_STEEL_BRICK = 30;
 
     private Random rnd;
     private Shape brickFace;
+
+    private HighScoreController highScoreController;
 
     public SteelBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
         rnd = new Random();
         brickFace = super.getBrickFace();
+        highScoreController = new HighScoreController();
     }
 
 
@@ -56,7 +61,12 @@ public class SteelBrick extends Brick {
         if(super.isBroken())
             return false;
         impact();
-        return  super.isBroken();
+
+        if(super.isBroken()) {
+            highScoreController.updateScore(SCORE_FOR_STEEL_BRICK);
+            //highScoreController.updateHighScore();
+        }
+        return super.isBroken();
     }
 
     public void impact(){

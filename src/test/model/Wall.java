@@ -191,6 +191,8 @@ public class Wall {
             * because for every brick program checks for horizontal and vertical impacts
             */
             brickCount--;
+            System.out.println(HighScore.getSCORE());
+            System.out.println(HighScore.getHighScore());
         }
         else if(impactBorder()) {
             ball.reverseX();
@@ -263,8 +265,9 @@ public class Wall {
         for(Brick b : bricks)
             b.repair();
         brickCount = bricks.length;
-        ballCount = 3;
+        //ballCount = 3;
     }
+
 
     public boolean ballEnd(){
         return ballCount == 0;
