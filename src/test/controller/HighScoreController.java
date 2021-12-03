@@ -17,4 +17,8 @@ public class HighScoreController {
             HighScore.setHighScore(HighScore.getSCORE());
         }
     }
+
+    public void restartScore () {
+        HighScore.setSCORE(0);
+    }
 }
