@@ -106,6 +106,7 @@ public class GameController {
             view.getWall().ballReset();
             view.getWall().wallReset();
             view.getWall().resetBallCount();
+            highScoreController.restartScore();
             showPauseMenu = false;
             repainting();
         }
