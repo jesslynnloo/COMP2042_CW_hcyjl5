@@ -19,6 +19,7 @@ public class GameController {
     public GameController(GameView view) {
         this.view = view;
         highScoreController = new HighScoreController();
+        highScoreController.readHighscoreFromFile();
         timer();
     }
 
@@ -33,6 +34,7 @@ public class GameController {
                     view.setMessage("Game over");
                     highScoreController.updateHighScore();
                     System.out.println(HighScore.getHighScore());
+                    highScoreController.writeScoreToFile();
                 }
                 view.getWall().ballReset();
                 gameTimer.stop();
