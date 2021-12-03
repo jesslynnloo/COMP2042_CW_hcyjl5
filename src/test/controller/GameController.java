@@ -1,5 +1,6 @@
 package test.controller;
 
+import test.model.HighScore;
 import test.view.GameView;
 
 import javax.swing.*;
@@ -13,9 +14,11 @@ public class GameController {
     private Timer gameTimer;
 
     private boolean showPauseMenu;
+    private HighScoreController highScoreController;
 
     public GameController(GameView view) {
         this.view = view;
+        highScoreController = new HighScoreController();
         timer();
     }
 
@@ -28,6 +31,8 @@ public class GameController {
                 if(view.getWall().ballEnd()){
                     view.getWall().wallReset();
                     view.setMessage("Game over");
+                    highScoreController.updateHighScore();
+                    System.out.println(HighScore.getHighScore());
                 }
                 view.getWall().ballReset();
                 gameTimer.stop();
@@ -100,6 +105,7 @@ public class GameController {
             view.setMessage("Restarting Game...");
             view.getWall().ballReset();
             view.getWall().wallReset();
+            view.getWall().resetBallCount();
             showPauseMenu = false;
             repainting();
         }
