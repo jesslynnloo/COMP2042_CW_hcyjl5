@@ -1,11 +1,13 @@
 package test.controller;
 
 import test.model.HighScore;
+import test.view.HighScoreView;
 
 import java.io.*;
 
 public class HighScoreController {
     File file;
+
 
     public HighScoreController() {
         try {

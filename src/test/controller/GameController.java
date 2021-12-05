@@ -35,6 +35,9 @@ public class GameController {
                     highScoreController.updateHighScore();
                     System.out.println(HighScore.getHighScore());
                     highScoreController.writeScoreToFile();
+                    view.getOwner().enableHighScoreView();
+
+
                 }
                 view.getWall().ballReset();
                 gameTimer.stop();
@@ -105,10 +108,7 @@ public class GameController {
         }
         else if(view.getRestartButtonRect().contains(p)){
             view.setMessage("Restarting Game...");
-            view.getWall().ballReset();
-            view.getWall().wallReset();
-            view.getWall().resetBallCount();
-            highScoreController.restartScore();
+            reset();
             showPauseMenu = false;
             repainting();
         }
@@ -140,5 +140,12 @@ public class GameController {
 
     public void repainting() {
         view.repaint();
+    }
+
+    public void reset() {
+        view.getWall().ballReset();
+        view.getWall().wallReset();
+        view.getWall().resetBallCount();
+        highScoreController.restartScore();
     }
 }

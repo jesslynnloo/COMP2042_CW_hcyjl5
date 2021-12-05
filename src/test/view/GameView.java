@@ -39,12 +39,16 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
     private Rectangle restartButtonRect;
     private int strLen;
 
+
+    private GameFrame owner;
+
     private DebugConsole debugConsole;
 
     private GameController gameController = new GameController(this);
 
-    public GameView(JFrame owner){
+    public GameView(GameFrame owner){
         super();
+        this.owner = owner;
 
         strLen = 0;
         gameController.setShowPauseMenu(false);
@@ -289,6 +293,11 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         return debugConsole;
     }
 
+    public GameFrame getOwner() {
+        return owner;
+    }
+
+
     public void setHandCursor () {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
@@ -296,5 +305,6 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
     public void setDefaultCursor () {
         this.setCursor(Cursor.getDefaultCursor());
     }
+
 
 }
