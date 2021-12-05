@@ -3,6 +3,7 @@ package test.view;
 import test.controller.GameController;
 import test.controller.HighScoreViewController;
 import test.controller.HomeMenuController;
+import test.controller.InfoController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private HomeMenuView homeMenuView;
     private HighScoreView highScoreView;
     private HighScoreViewController highScoreViewController;
+    private InfoView infoView;
+    private InfoController infoController;
 
     private boolean gaming;
 
@@ -39,6 +42,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         highScoreView = new HighScoreView(this);
         highScoreViewController = new HighScoreViewController(highScoreView);
 
+        infoView = new InfoView(this);
+        infoController = new InfoController(infoView);
 
         this.add(homeMenuView,BorderLayout.CENTER);
 
@@ -89,10 +94,28 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gameController.reset();
     }
 
+    public void enableHomeMenuFromInfo() {
+        this.dispose();
+        this.remove(infoView);
+        this.add(homeMenuView,BorderLayout.CENTER);
+        this.setUndecorated(true);
+        initialize();
+        this.addWindowFocusListener(this);
+    }
+
     public void enableHighScoreView() {
         this.dispose();
         this.remove(view);
         this.add(highScoreView,BorderLayout.CENTER);
+        this.setUndecorated(false);
+        initialize();
+        this.addWindowFocusListener(this);
+    }
+
+    public void enableInfoView() {
+        this.dispose();
+        this.remove(homeMenuView);
+        this.add(infoView,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
         this.addWindowFocusListener(this);
