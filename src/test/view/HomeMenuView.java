@@ -34,6 +34,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     private static final String CREDITS = "Version 0.1";
     private static final String START_TEXT = "Start";
     private static final String MENU_TEXT = "Exit";
+    private static final String INFO_TEXT = "Info";
 
     private static final Color BG_COLOR = Color.GREEN.darker();
     private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
@@ -50,6 +51,10 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 
     private Rectangle startButton;
     private Rectangle menuButton;
+
+
+
+    private Rectangle infoButton;
 
 
     private BasicStroke borderStoke;
@@ -80,6 +85,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
         startButton = new Rectangle(btnDim);
         menuButton = new Rectangle(btnDim);
+        infoButton = new Rectangle(btnDim);
 
         borderStoke = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,DASHES,0);
         borderStoke_noDashes = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
@@ -173,6 +179,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     private void drawAllButton(Graphics2D g2d){
         drawButton(g2d, startButton, START_TEXT, homeMenuController.isStartClicked());
         drawButton(g2d, menuButton, MENU_TEXT, homeMenuController.isMenuClicked());
+        drawButton(g2d, infoButton, INFO_TEXT, homeMenuController.isInfoClicked());
     }
 
     private void drawButton(Graphics2D g2d, Rectangle button, String buttonText, boolean buttonClicked){
@@ -182,14 +189,21 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 
         if(buttonText.equals(START_TEXT)){
             x = (menuFace.width - startButton.width) / 2;
-            y =(int) ((menuFace.height - startButton.height) * 0.8);
+            y =(int) ((menuFace.height - startButton.height) * 0.7);
+        }
+
+        else if(buttonText.equals(INFO_TEXT)){
+            x = startButton.x;
+            y = startButton.y;
+
+            y *= 1.2;
         }
 
         else if(buttonText.equals(MENU_TEXT)){
             x = startButton.x;
             y = startButton.y;
 
-            y *= 1.2;
+            y *= 1.4;
         }
 
         txtRect = buttonFont.getStringBounds(buttonText,frc);
@@ -260,6 +274,10 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 
     public Rectangle getMenuButton() {
         return menuButton;
+    }
+
+    public Rectangle getInfoButton() {
+        return infoButton;
     }
 
     public GameFrame getOwner() {

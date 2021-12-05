@@ -11,6 +11,7 @@ public class HomeMenuController {
 
     private boolean startClicked;
     private boolean menuClicked;
+    private boolean infoClicked;
 
     public HomeMenuController(HomeMenuView homeMenuView) {
         this.homeMenuView = homeMenuView;
@@ -23,10 +24,14 @@ public class HomeMenuController {
             homeMenuView.getOwner().enableGameBoard();
 
         }
+        else if(homeMenuView.getInfoButton().contains(p)){
+            homeMenuView.getOwner().enableInfoView();
+        }
         else if(homeMenuView.getMenuButton().contains(p)){
             System.out.println("Goodbye " + System.getProperty("user.name"));
             System.exit(0);
         }
+
     }
 
     public void checkMousePressed (MouseEvent mouseEvent) {
@@ -36,6 +41,12 @@ public class HomeMenuController {
             homeMenuView.repainting(homeMenuView.getStartButton());
 
         }
+
+        else if(homeMenuView.getInfoButton().contains(p)){
+            infoClicked = true;
+            homeMenuView.repainting(homeMenuView.getInfoButton());
+        }
+
         else if(homeMenuView.getMenuButton().contains(p)){
             menuClicked = true;
             homeMenuView.repainting(homeMenuView.getMenuButton());
@@ -47,6 +58,12 @@ public class HomeMenuController {
             startClicked = false;
             homeMenuView.repainting(homeMenuView.getStartButton());
         }
+
+        else if(infoClicked) {
+            infoClicked = false;
+            homeMenuView.repainting(homeMenuView.getInfoButton());
+        }
+
         else if(menuClicked){
             menuClicked = false;
             homeMenuView.repainting(homeMenuView.getMenuButton());
@@ -55,7 +72,7 @@ public class HomeMenuController {
 
     public void checkMouseMoved (MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(homeMenuView.getStartButton().contains(p) || homeMenuView.getMenuButton().contains(p))
+        if(homeMenuView.getStartButton().contains(p) || homeMenuView.getInfoButton().contains(p) ||homeMenuView.getMenuButton().contains(p))
             homeMenuView.settingHandCursor();
         else
             homeMenuView.settingDefaultCursor();
@@ -67,5 +84,9 @@ public class HomeMenuController {
 
     public boolean isMenuClicked() {
         return menuClicked;
+    }
+
+    public boolean isInfoClicked() {
+        return infoClicked;
     }
 }
