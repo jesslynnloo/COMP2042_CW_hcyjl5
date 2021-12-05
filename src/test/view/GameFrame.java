@@ -1,6 +1,7 @@
 package test.view;
 
 import test.controller.GameController;
+import test.controller.HighScoreViewController;
 import test.controller.HomeMenuController;
 
 import javax.swing.*;
@@ -17,6 +18,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private GameController gameController;
     private HomeMenuController homeMenuController;
     private HomeMenuView homeMenuView;
+    private HighScoreView highScoreView;
+    private HighScoreViewController highScoreViewController;
 
     private boolean gaming;
 
@@ -33,6 +36,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         homeMenuView = new HomeMenuView(this, new Dimension(450, 300));
         homeMenuController = new HomeMenuController(homeMenuView);
 
+        highScoreView = new HighScoreView(this);
+        highScoreViewController = new HighScoreViewController(highScoreView);
+
+
         this.add(homeMenuView,BorderLayout.CENTER);
 
         this.setUndecorated(true);
@@ -46,6 +53,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.pack();
         this.autoLocate();
         this.setVisible(true);
+        this.setResizable(false);
     }
 
     public void enableGameBoard(){
@@ -57,6 +65,37 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
 
+    }
+
+    public void enableGameBoardFromHighscore() {
+        this.dispose();
+        this.remove(highScoreView);
+        this.add(view,BorderLayout.CENTER);
+        this.setUndecorated(false);
+        initialize();
+        this.addWindowFocusListener(this);
+
+        gameController.reset();
+    }
+
+    public void enableHomeMenu() {
+        this.dispose();
+        this.remove(highScoreView);
+        this.add(homeMenuView,BorderLayout.CENTER);
+        this.setUndecorated(true);
+        initialize();
+        this.addWindowFocusListener(this);
+
+        gameController.reset();
+    }
+
+    public void enableHighScoreView() {
+        this.dispose();
+        this.remove(view);
+        this.add(highScoreView,BorderLayout.CENTER);
+        this.setUndecorated(false);
+        initialize();
+        this.addWindowFocusListener(this);
     }
 
     private void autoLocate(){
