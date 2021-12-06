@@ -30,7 +30,7 @@ public class SpecialBrick extends Brick{
         super.impact();
         if(super.isBroken()) {
             playerController = new PlayerController(Wall.getPlayer());
-            playerController.extendPlayer(200,10);
+            playerController.adjustPlayer(200,10);
         }
         return super.isBroken();
     }

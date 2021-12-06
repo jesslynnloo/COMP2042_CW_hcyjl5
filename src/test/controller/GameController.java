@@ -60,6 +60,7 @@ public class GameController {
 
             repainting();
         });
+
     }
 
     public void onLostFocus(){

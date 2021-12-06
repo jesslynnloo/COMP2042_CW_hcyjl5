@@ -10,7 +10,7 @@ public class PlayerController {
         this.player = player;
     }
 
-    public void extendPlayer(int extendedWidth, int height) {
+    public void adjustPlayer(int extendedWidth, int height) {
         player.updatePlayerFace(extendedWidth,height);
     }
 
