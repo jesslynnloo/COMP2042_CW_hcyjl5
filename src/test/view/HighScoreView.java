@@ -107,7 +107,7 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
 
     @Override
     protected void paintComponent(Graphics g) {
-        Image image = Toolkit.getDefaultToolkit().getImage("paper1.jpg");
+        Image image = Toolkit.getDefaultToolkit().getImage("highscore_view_background.jpg");
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
         if(image != null) {
