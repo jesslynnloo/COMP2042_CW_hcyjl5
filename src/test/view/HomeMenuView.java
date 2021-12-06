@@ -39,7 +39,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     private static final Color BG_COLOR = Color.GREEN.darker();
     private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
     private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
-    private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
+    private static final Color TEXT_COLOR = Color.WHITE;//new Color(16, 52, 166);//egyptian blue
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
     private static final int BORDER_SIZE = 5;
@@ -70,7 +70,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     private int stringHeight;
     private HomeMenuController homeMenuController = new HomeMenuController(this);
 
-    public HomeMenuView(GameFrame owner, Dimension area){
+    public HomeMenuView (GameFrame owner, Dimension area){
         this.setFocusable(true);
         this.requestFocusInWindow();
 
@@ -127,25 +127,21 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         g2d.setColor(prevColor);
     }
 
-    private void drawContainer(Graphics2D g2d){
-        Color prev = g2d.getColor();
+    private void drawContainer(Graphics g){
+        paintComponent((Graphics2D) g);
 
-        g2d.setColor(BG_COLOR);
-        g2d.fill(menuFace);
+    }
 
-        Stroke tmp = g2d.getStroke();
-
-        g2d.setStroke(borderStoke_noDashes);
-        g2d.setColor(DASH_BORDER_COLOR);
-        g2d.draw(menuFace);
-
-        g2d.setStroke(borderStoke);
-        g2d.setColor(BORDER_COLOR);
-        g2d.draw(menuFace);
-
-        g2d.setStroke(tmp);
-
-        g2d.setColor(prev);
+    @Override
+    protected void paintComponent(Graphics g) {
+        Image image = Toolkit.getDefaultToolkit().getImage("icon.png");
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g.create();
+        if(image != null) {
+            int x = (menuFace.width - image.getWidth(this)) / 2;
+            int y = (menuFace.height - image.getHeight(this)) / 2;
+            g2d.drawImage(image, x, y, this);
+        }
     }
 
     private void drawAllText(Graphics2D g2d){
