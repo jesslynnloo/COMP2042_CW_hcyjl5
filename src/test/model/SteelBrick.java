@@ -64,7 +64,6 @@ public class SteelBrick extends Brick {
 
         if(super.isBroken()) {
             highScoreController.updateScore(SCORE_FOR_STEEL_BRICK);
-            //highScoreController.updateHighScore();
         }
         return super.isBroken();
     }

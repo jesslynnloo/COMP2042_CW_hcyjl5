@@ -45,7 +45,6 @@ public class WoodenBrick extends Brick {
 
         if(super.isBroken()) {
             highScoreController.updateScore(SCORE_FOR_WOODEN_BRICK);
-            //highScoreController.updateHighScore();
         }
         return super.isBroken();
     }

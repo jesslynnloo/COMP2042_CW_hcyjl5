@@ -394,12 +394,5 @@ public class Wall {
         this.level = level;
     }
 
-    public Rectangle getArea() {
-        return area;
-    }
-
-    public Point getStartPoint() {
-        return startPoint;
-    }
 
 }
