@@ -26,13 +26,22 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
     private static final String INFO_TEXT = "Info Screen";
     private static final String BACK_TEXT = "Back";
 
+    private static final String info1 = "1. Player's goal is to destroy a wall with a small ball.";
+    private static final String info2 = "2. SPACE start/pause the game.";
+    private static final String info3 = "3. A move left the player.";
+    private static final String info4 = "4. D move right the player.";
+    private static final String info5 = "5. ESC enter/exit pause menu.";
+    private static final String info6 = "6. ALT+SHITF+F1 open console.";
+    private static final String info7 = "7. The game automatically pause if the frame loses focus.";
+
     private static final Color BG_COLOR = Color.WHITE.darker();
-    private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
+    private static final Color TEXT_COLOR = new Color(101, 67, 33);//egyptian blue
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
 
     private Font buttonFont;
     private Font titleFont;
+    private Font infoFont;
 
     private InfoController infoController = new InfoController(this);
 
@@ -49,6 +58,7 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
         backButton = new Rectangle(btnDim);
 
         titleFont = new Font("Noto Mono",Font.PLAIN,25);
+        infoFont = new Font("Merlin", Font.PLAIN, 20);
         buttonFont = new Font("Monospaced",Font.PLAIN,backButton.height-2);
     }
 
@@ -92,19 +102,33 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
         g2d.setColor(prevColor);
     }
 
-    private void drawContainer(Graphics2D g2d){
-        Color prev = g2d.getColor();
+    private void drawContainer(Graphics g){
+        paintComponent((Graphics2D) g);
 
-        g2d.setColor(BG_COLOR);
-        g2d.fill(menuFace);
+    }
 
-        g2d.draw(menuFace);
-
-        g2d.setColor(prev);
+    @Override
+    protected void paintComponent(Graphics g) {
+        Image image = Toolkit.getDefaultToolkit().getImage("info_background.jpg");
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g.create();
+        if(image != null) {
+            int x = (menuFace.width - image.getWidth(this)) / 2;
+            int y = (menuFace.height - image.getHeight(this)) / 2;
+            g2d.drawImage(image, x, y, this);
+        }
     }
 
     private void drawAllText(Graphics2D g2d){
         drawText(g2d, titleFont, INFO_TEXT);
+        drawText(g2d, infoFont, info1);
+        drawText(g2d, infoFont, info2);
+        drawText(g2d, infoFont, info3);
+        drawText(g2d, infoFont, info4);
+        drawText(g2d, infoFont, info5);
+        drawText(g2d, infoFont, info6);
+        drawText(g2d, infoFont, info7);
+
 
     }
 
@@ -116,13 +140,15 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
 
         int sX;
 
-        sX = (int)(menuFace.getWidth() - textRect.getWidth()) / 2;
+
 
         if(text.equals(INFO_TEXT)){
+            sX = (int)(menuFace.getWidth() - textRect.getWidth()) / 2;
             stringHeight = (int)(menuFace.getHeight() / 12);
         }
         else{
-            stringHeight += (int) textRect.getHeight() * 1.1;//add 10% of String height between the two strings
+            sX = (int)(menuFace.getWidth()) / 10;
+            stringHeight += (int) textRect.getHeight() * 2;//add 10% of String height between the two strings
         }
 
         g2d.setFont(font);

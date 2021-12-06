@@ -40,10 +40,15 @@ public class Wall {
 
     private Brick[] bricks;
     private Ball ball;
-    private Player player;
+    private static Player player;
 
     private Brick[][] levels;
+
+
+
     private int level;
+
+
 
     private Point startPoint;
     private int brickCount;
@@ -217,7 +222,7 @@ public class Wall {
     private Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
         Brick[][] tmp = new Brick[LEVELS_COUNT][];
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
-        tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT);
+        tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT,SPECIAL);
         tmp[2] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL);
         tmp[3] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
         tmp[4] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL,SPECIAL);
@@ -374,8 +379,20 @@ public class Wall {
         return ball;
     }
 
-    public Player getPlayer() {
+    public static Player getPlayer() {
         return player;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public Rectangle getArea() {
+        return area;
+    }
+
+    public Point getStartPoint() {
+        return startPoint;
     }
 
 }

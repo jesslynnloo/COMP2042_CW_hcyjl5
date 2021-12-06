@@ -31,14 +31,17 @@ public class Player {
     private static final int DEF_MOVE_AMOUNT = 5;
 
     private Rectangle playerFace;
+
     private Point ballPoint;
     private int moveAmount;
     private int min;
     private int max;
+    private Rectangle container;
 
 
     public Player(Point ballPoint,int width,int height,Rectangle container) {
         this.ballPoint = ballPoint;
+        this.container = container;
         moveAmount = 0;
         playerFace = makeRectangle(width, height);
         min = container.x + (width / 2);
@@ -46,9 +49,23 @@ public class Player {
 
     }
 
-    private Rectangle makeRectangle(int width,int height){
+    public Rectangle makeRectangle(int width,int height){
         Point p = new Point((int)(ballPoint.getX() - (width / 2)),(int)ballPoint.getY());
         return  new Rectangle(p,new Dimension(width,height));
+    }
+
+    public void updatePlayerFace(int width,int height) {
+        playerFace = makeRectangle(width,height);
+        min = container.x + (width / 2);
+        max = min + container.width - width;
+    }
+
+    public void resetPlayerFace() {
+        int width = 150;
+        int height = 10;
+        playerFace = makeRectangle(width,height);
+        min = container.x + (width / 2);
+        max = min + container.width - width;
     }
 
     public boolean impact(Ball b){
@@ -76,8 +93,9 @@ public class Player {
     }
 
     public Shape getPlayerFace(){
-        return  playerFace;
+        return playerFace;
     }
+
 
     public void moveTo(Point p){
         ballPoint.setLocation(p);
