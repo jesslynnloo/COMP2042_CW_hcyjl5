@@ -100,15 +100,21 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
         g2d.setColor(prevColor);
     }
 
-    private void drawContainer(Graphics2D g2d) {
-        Color prev = g2d.getColor();
+    private void drawContainer(Graphics g){
+        paintComponent((Graphics2D) g);
 
-        g2d.setColor(BG_COLOR);
-        g2d.fill(menuFace);
+    }
 
-        g2d.draw(menuFace);
-
-        g2d.setColor(prev);
+    @Override
+    protected void paintComponent(Graphics g) {
+        Image image = Toolkit.getDefaultToolkit().getImage("paper1.jpg");
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g.create();
+        if(image != null) {
+            int x = (menuFace.width - image.getWidth(this)) / 2;
+            int y = (menuFace.height - image.getHeight(this)) / 2;
+            g2d.drawImage(image, x, y, this);
+        }
     }
 
 
