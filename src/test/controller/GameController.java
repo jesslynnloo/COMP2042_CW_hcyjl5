@@ -1,6 +1,7 @@
 package test.controller;
 
 import test.model.HighScore;
+import test.model.Wall;
 import test.view.GameView;
 
 import javax.swing.*;
@@ -49,6 +50,7 @@ public class GameController {
                     view.getWall().ballReset();
                     view.getWall().wallReset();
                     view.getWall().nextLevel();
+                    Wall.getPlayer().resetPlayerFace();
                 }
                 else{
                     view.setMessage("ALL WALLS DESTROYED");
