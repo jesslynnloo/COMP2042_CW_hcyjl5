@@ -22,9 +22,6 @@ public class ClayBrick extends Brick {
 
     private HighScoreController highScoreController;
 
-
-
-
     public ClayBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,CLAY_STRENGTH);
         highScoreController = new HighScoreController();
@@ -43,7 +40,6 @@ public class ClayBrick extends Brick {
 
         if(super.isBroken()) {
             highScoreController.updateScore(SCORE_FOR_CLAY_BRICK);
-            //highScoreController.updateHighScore();
         }
         return super.isBroken();
     }

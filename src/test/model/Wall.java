@@ -26,12 +26,13 @@ import java.util.Random;
 
 public class Wall {
 
-    private static final int LEVELS_COUNT = 5;
+    private static final int LEVELS_COUNT = 7;
 
     private static final int CLAY = 1;
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
-    private static final int SPECIAL = 4;
+    private static final int WOODEN = 4;
+    private static final int SPECIAL = 5;
 
     private Random rnd;
     private Rectangle area;
@@ -222,10 +223,13 @@ public class Wall {
     private Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
         Brick[][] tmp = new Brick[LEVELS_COUNT][];
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
-        tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT,SPECIAL);
+        tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT);
         tmp[2] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL);
         tmp[3] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
-        tmp[4] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL,SPECIAL);
+        tmp[4] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,WOODEN,CEMENT);
+        tmp[5] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT,SPECIAL);
+        tmp[6] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,WOODEN,STEEL,SPECIAL);
+
         return tmp;
     }
 
@@ -362,6 +366,9 @@ public class Wall {
             case CEMENT:
                 out = new CementBrick(point, size);
                 break;
+            case WOODEN:
+                out = new WoodenBrick(point,size);
+                break;
             case SPECIAL:
                 out = new SpecialBrick(point,size);
                 break;
@@ -387,12 +394,5 @@ public class Wall {
         this.level = level;
     }
 
-    public Rectangle getArea() {
-        return area;
-    }
-
-    public Point getStartPoint() {
-        return startPoint;
-    }
 
 }

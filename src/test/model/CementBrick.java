@@ -18,7 +18,6 @@ public class CementBrick extends Brick {
 
     private Crack crack;
     private Shape brickFace;
-    private HighScore highScore;
     private HighScoreController highScoreController;
 
     public CementBrick(Point point, Dimension size){
@@ -44,7 +43,6 @@ public class CementBrick extends Brick {
             return false;
         }
         highScoreController.updateScore(SCORE_FOR_CEMENT_BRICK);
-        //highScoreController.updateHighScore();
         return true;
     }
 

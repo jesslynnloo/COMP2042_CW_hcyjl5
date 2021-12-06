@@ -14,7 +14,4 @@ public class PlayerController {
         player.updatePlayerFace(extendedWidth,height);
     }
 
-    public void resetPlayer() {
-        player.resetPlayerFace();
-    }
 }
