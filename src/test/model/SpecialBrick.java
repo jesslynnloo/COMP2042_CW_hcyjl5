@@ -9,7 +9,7 @@ public class SpecialBrick extends Brick{
 
     private static final String NAME = "Special Brick";
     private static final Color DEF_INNER = new Color(144, 238, 144);
-    private static final Color DEF_BORDER = Color.GRAY;
+    private static final Color DEF_BORDER = new Color(255,255,180);
     private static final int SPECIAL_BRICK_STRENGTH = 1;
     private PlayerController playerController;
 
