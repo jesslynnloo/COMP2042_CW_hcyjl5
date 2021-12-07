@@ -5,8 +5,14 @@ import test.model.Wall;
 
 import java.util.TimerTask;
 
+/**
+ * This is the TimerTaskController.
+ */
 public class TimerTaskController extends TimerTask {
 
+    /**
+     * The task that is carried out at a fixed rate.
+     */
     @Override
     public void run() {
         int shortenLength;
