@@ -5,10 +5,17 @@ import test.view.HighScoreView;
 
 import java.io.*;
 
+/**
+ * This is the HighScoreController class.
+ */
 public class HighScoreController {
     File file;
 
 
+    /**
+     * Class constructor.
+     * Create file.
+     */
     public HighScoreController() {
         try {
             createFile();
@@ -17,25 +24,42 @@ public class HighScoreController {
         }
     }
 
+    /**
+     * Update the score in the HighScore class.
+     * @param score The score obtained by the user.
+     */
     public void updateScore (int score) {
         HighScore.setSCORE(HighScore.getSCORE() + score);
     }
 
+    /**
+     * Update high score in the HighScore class if the user's score is higher than the previous high score.
+     */
     public void updateHighScore () {
         if (HighScore.getSCORE() > HighScore.getHighScore()) {
             HighScore.setHighScore(HighScore.getSCORE());
         }
     }
 
+    /**
+     * Reset score in the HighScore class to 0.
+     */
     public void restartScore () {
         HighScore.setSCORE(0);
     }
 
+    /**
+     * Create a file named "score.txt" if the file does not exist.
+     * @throws IOException If an input or output exception occurred.
+     */
     public void createFile () throws IOException {
         file  = new File("score.txt");
         boolean result = file.createNewFile();
     }
 
+    /**
+     * Read the highest score from the file and save the highest score to the HIGHSCORE variable in HighScore class.
+     */
     public void readHighscoreFromFile () {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -61,6 +85,9 @@ public class HighScoreController {
         }
     }
 
+    /**
+     * Write the user's score to the file.
+     */
     public void writeScoreToFile () {
         try {
             BufferedWriter output = new BufferedWriter(new FileWriter(file, true));
