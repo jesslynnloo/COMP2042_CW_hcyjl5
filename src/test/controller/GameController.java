@@ -1,6 +1,7 @@
 package test.controller;
 
 import test.model.HighScore;
+import test.model.SpecialBrick;
 import test.model.Wall;
 import test.view.GameView;
 
@@ -51,6 +52,7 @@ public class GameController {
                     view.getWall().wallReset();
                     view.getWall().nextLevel();
                     Wall.getPlayer().resetPlayerFace();
+                    SpecialBrick.setExtendedWidth(0);
                 }
                 else{
                     view.setMessage("ALL WALLS DESTROYED");
@@ -150,5 +152,6 @@ public class GameController {
         view.getWall().wallReset();
         view.getWall().resetBallCount();
         highScoreController.restartScore();
+        Wall.getPlayer().resetPlayerFace();
     }
 }

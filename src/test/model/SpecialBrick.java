@@ -13,6 +13,11 @@ public class SpecialBrick extends Brick{
     private static final int SPECIAL_BRICK_STRENGTH = 1;
     private PlayerController playerController;
 
+
+
+
+    private static int extendedWidth;
+
     public SpecialBrick(Point point, Dimension size) {
         super(NAME,point,size,DEF_BORDER,DEF_INNER,SPECIAL_BRICK_STRENGTH);
     }
@@ -29,8 +34,9 @@ public class SpecialBrick extends Brick{
             return false;
         super.impact();
         if(super.isBroken()) {
+            extendedWidth += 50;
             playerController = new PlayerController(Wall.getPlayer());
-            playerController.adjustPlayer(200,10);
+            playerController.adjustPlayer(Player.getPlayerFaceWidth() + extendedWidth,10);
         }
         return super.isBroken();
     }
@@ -38,5 +44,9 @@ public class SpecialBrick extends Brick{
     @Override
     public Shape getBrick() {
         return super.getBrickFace();
+    }
+
+    public static void setExtendedWidth(int extendedWidth) {
+        SpecialBrick.extendedWidth = extendedWidth;
     }
 }
