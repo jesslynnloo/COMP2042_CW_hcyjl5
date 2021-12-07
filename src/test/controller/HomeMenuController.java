@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.Timer;
 
+/**
+ * This is the HomeMenuController class.
+ */
 public class HomeMenuController {
     private HomeMenuView homeMenuView;
 
@@ -17,11 +20,19 @@ public class HomeMenuController {
     private TimerController timerController;
     private TimerTaskController timerTaskController;
 
+    /**
+     * Class constructor.
+     * @param homeMenuView The HomeMenuView object.
+     */
     public HomeMenuController(HomeMenuView homeMenuView) {
         this.homeMenuView = homeMenuView;
     }
 
 
+    /**
+     * Do the corresponding action when the user clicks the buttons.
+     * @param mouseEvent Event which indicates that a mouse action occurred.
+     */
     public void checkMouseClicked (MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
         if(homeMenuView.getStartButton().contains(p)){
@@ -41,6 +52,10 @@ public class HomeMenuController {
 
     }
 
+    /**
+     * Change the appearance of the button and repaint the buttons when the user presses the buttons.
+     * @param mouseEvent Event which indicates that a mouse action occurred.
+     */
     public void checkMousePressed (MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
         if(homeMenuView.getStartButton().contains(p)){
@@ -60,6 +75,10 @@ public class HomeMenuController {
         }
     }
 
+    /**
+     * Change the appearance of the button and repaint the buttons when the user releases the buttons.
+     * @param mouseEvent Event which indicates that a mouse action occurred.
+     */
     public void checkMouseReleased (MouseEvent mouseEvent) {
         if(startClicked ){
             startClicked = false;
@@ -77,6 +96,10 @@ public class HomeMenuController {
         }
     }
 
+    /**
+     * Change the cursor image to the hand cursor when the cursor is on the buttons.
+     * @param mouseEvent Event which indicates that a mouse action occurred.
+     */
     public void checkMouseMoved (MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
         if(homeMenuView.getStartButton().contains(p) || homeMenuView.getInfoButton().contains(p) ||homeMenuView.getMenuButton().contains(p))
@@ -85,14 +108,26 @@ public class HomeMenuController {
             homeMenuView.settingDefaultCursor();
     }
 
+    /**
+     * Get the value of startClicked.
+     * @return A boolean value of startClicked.
+     */
     public boolean isStartClicked() {
         return startClicked;
     }
 
+    /**
+     * Get the value of menuClicked.
+     * @return A boolean value of menuClicked.
+     */
     public boolean isMenuClicked() {
         return menuClicked;
     }
 
+    /**
+     * Get the value of infoClicked.
+     * @return A boolean value of infoClicked.
+     */
     public boolean isInfoClicked() {
         return infoClicked;
     }
