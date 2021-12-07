@@ -30,7 +30,7 @@ public class Player {
 
     private static final int DEF_MOVE_AMOUNT = 5;
 
-    private Rectangle playerFace;
+    private static Rectangle playerFace;
 
     private Point ballPoint;
     private int moveAmount;
@@ -92,8 +92,11 @@ public class Player {
         moveAmount = 0;
     }
 
-    public Shape getPlayerFace(){
+    public static Shape getPlayerFace(){
         return playerFace;
+    }
+    public static int getPlayerFaceWidth() {
+        return playerFace.width;
     }
 
 
