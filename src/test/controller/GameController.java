@@ -10,6 +10,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+/**
+ * This is the GameController class.
+ */
 public class GameController {
 
     private GameView view;
@@ -18,6 +21,10 @@ public class GameController {
     private boolean showPauseMenu;
     private HighScoreController highScoreController;
 
+    /**
+     * Class constructor
+     * @param view The game view.
+     */
     public GameController(GameView view) {
         this.view = view;
         highScoreController = new HighScoreController();
@@ -25,6 +32,9 @@ public class GameController {
         timer();
     }
 
+    /**
+     * Implement a game timer.
+     */
     public void timer () {
         gameTimer = new Timer(10, e ->{
             view.getWall().move();
@@ -65,12 +75,19 @@ public class GameController {
 
     }
 
+    /**
+     * Called when the window lost focus.
+     */
     public void onLostFocus(){
         gameTimer.stop();
         view.setMessage("Focus Lost");
         repainting();
     }
 
+    /**
+     * Do the corresponding action when the user presses certain keys.
+     * @param keyEvent Event which indicates that a keystroke occurred.
+     */
     public void checkKeyPressed (KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
             case KeyEvent.VK_A:
@@ -99,10 +116,18 @@ public class GameController {
         }
     }
 
+    /**
+     * Stop the movement of the player when the user releases certain keys.
+     * @param keyEvent Event which indicates that a keystroke occurred.
+     */
     public void checkKeyReleased (KeyEvent keyEvent) {
         view.getWall().getPlayer().stop();
     }
 
+    /**
+     * Do the corresponding action when the user clicks the buttons.
+     * @param mouseEvent Event which indicates that a mouse action occurred.
+     */
     public void checkMouseClicked (MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
         if(!showPauseMenu)
@@ -122,6 +147,10 @@ public class GameController {
         }
     }
 
+    /**
+     * Change the cursor image to the hand cursor when the cursor is on the buttons.
+     * @param mouseEvent Event that indicates that a mouse action occurred.
+     */
     public void checkMouseMoved (MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
         if(view.getExitButtonRect() != null && showPauseMenu) {
@@ -135,18 +164,32 @@ public class GameController {
         }
     }
 
+    /**
+     * Get the value of showPauseMenu.
+     * @return A boolean value of showPauseMenu.
+     */
     public boolean isShowPauseMenu() {
         return showPauseMenu;
     }
 
+    /**
+     * Set the value of showPauseMenu.
+     * @param showPauseMenu A boolean value containing the value for showPauseMenu.
+     */
     public void setShowPauseMenu(boolean showPauseMenu) {
         this.showPauseMenu = showPauseMenu;
     }
 
+    /**
+     * Call the repaint() method in the GameView class.
+     */
     public void repainting() {
         view.repaint();
     }
 
+    /**
+     * Reset the ball, the wall, the ball count, the score and the player face.
+     */
     public void reset() {
         view.getWall().ballReset();
         view.getWall().wallReset();
