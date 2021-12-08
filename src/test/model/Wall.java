@@ -24,6 +24,9 @@ import java.awt.geom.Point2D;
 import java.util.Random;
 
 
+/**
+ * This is the Wall class.
+ */
 public class Wall {
 
     private static final int LEVELS_COUNT = 7;
@@ -56,6 +59,17 @@ public class Wall {
     private int ballCount;
     private boolean ballLost;
 
+    /**
+     * Class constructor.
+     * Make levels.
+     * Set the speed of the ball to random number.
+     * Initialize a Player object.
+     * @param drawArea The area that all the components can be drawn.
+     * @param brickCount The number of bricks.
+     * @param lineCount The number of lines the bricks align.
+     * @param brickDimensionRatio The brick dimension ratio.
+     * @param ballPos The ball position.
+     */
     public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
 
         this.startPoint = new Point(ballPos);
@@ -86,6 +100,17 @@ public class Wall {
 
     }
 
+    /**
+     * Make level with only one type of brick.
+     * Make all the bricks based on the type of the brick.
+     * Align all the bricks.
+     * @param drawArea The area that all the components can be drawn.
+     * @param brickCnt The number of bricks.
+     * @param lineCnt The number of lines the bricks align.
+     * @param brickSizeRatio The brick size ratio.
+     * @param type The type of brick.
+     * @return A Brick array.
+     */
     private Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -126,6 +151,18 @@ public class Wall {
 
     }
 
+    /**
+     * Make level in chessboard style with two types of brick.
+     * Make all the bricks based on the type of the brick.
+     * Align all the bricks.
+     * @param drawArea The area that all the components can be drawn.
+     * @param brickCnt The number of bricks.
+     * @param lineCnt The number of lines the bricks align.
+     * @param brickSizeRatio The brick size ratio.
+     * @param typeA The type of the first brick.
+     * @param typeB The type of the second brick.
+     * @return A Brick array.
+     */
     private Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -171,6 +208,19 @@ public class Wall {
         return tmp;
     }
 
+    /**
+     * Make level in chessboard style with three types of brick.
+     * Make all the bricks based on the type of the brick.
+     * Align all the bricks.
+     * @param drawArea The area that all the components can be drawn.
+     * @param brickCnt The number of bricks.
+     * @param lineCnt The number of lines the bricks align.
+     * @param brickSizeRatio The brick size ratio.
+     * @param typeA The type of the first brick.
+     * @param typeB The type of the second brick.
+     * @param typeC The type of the third brick.
+     * @return A Brick array.
+     */
     private Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB, int typeC){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -216,10 +266,22 @@ public class Wall {
         return tmp;
     }
 
+    /**
+     * Make a new rubber ball using the ball position passed.
+     * @param ballPos The ball position.
+     */
     private void makeBall(Point2D ballPos){
         ball = new RubberBall(ballPos);
     }
 
+    /**
+     * Make all the levels using different types of brick.
+     * @param drawArea The area that all the components can be drawn.
+     * @param brickCount The number of bricks.
+     * @param lineCount The number of lines the bricks align.
+     * @param brickDimensionRatio The brick dimension ratio.
+     * @return A two-dimensional Brick array.
+     */
     private Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
         Brick[][] tmp = new Brick[LEVELS_COUNT][];
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
@@ -233,11 +295,22 @@ public class Wall {
         return tmp;
     }
 
+    /**
+     * Move the player and the ball.
+     */
     public void move(){
         player.move();
         ball.move();
     }
 
+    /**
+     * Do the corresponding actions when the ball is in impact with all the components.
+     * If the ball is in impact with the player, reverse speedY of the ball.
+     * Else if the ball is in impact with the wall, which is the bricks, minus the number of bricks by 1 if the brick is broken.
+     * Else if the ball is in impact with the border, reverse speedX of the ball.
+     * Else if the ball is in impact with the upper border of the frame, reverse speedY of the ball.
+     * Else if the ball drops below the frame, minus ballCount by 1 and set ballLost to true;
+     */
     public void findImpacts(){
         if(player.impact(ball)){
             ball.reverseY();
@@ -247,8 +320,8 @@ public class Wall {
             * because for every brick program checks for horizontal and vertical impacts
             */
             brickCount--;
-            System.out.println(HighScore.getSCORE());
-            System.out.println(HighScore.getHighScore());
+            System.out.println(HighScore.getSCORE()); //DELETE ME
+            System.out.println(HighScore.getHighScore()); //DELETE ME
         }
         else if(impactBorder()) {
             ball.reverseX();
@@ -262,6 +335,14 @@ public class Wall {
         }
     }
 
+    /**
+     * Check if there is impact by the ball for every brick.
+     * Check the direction of the impact.
+     * If the impact is from the up and down direction, reverse the speedY of the ball.
+     * If the impact is from the left and right direction, reverse the speedX of the ball.
+     * If there is no impact between the ball and the brick, then return false.
+     * @return A boolean value whether the brick is broken.
+     */
     private boolean impactWall(){
         for(Brick b : bricks){
             switch(b.findImpact(ball)) {
@@ -285,23 +366,47 @@ public class Wall {
         return false;
     }
 
+    /**
+     * Check if the ball is in impact with the border.
+     * @return A boolean value whether the ball is in impact with the border.
+     */
     private boolean impactBorder(){
         Point2D p = ball.getPosition();
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
     }
 
+    /**
+     * Get the value of number of bricks, brickCount.
+     * @return An int value of brickCount.
+     */
     public int getBrickCount(){
         return brickCount;
     }
 
+    /**
+     * Get the value of number of ball, ballCount.
+     * @return An int value of ballCount.
+     */
     public int getBallCount(){
         return ballCount;
     }
 
+    /**
+     * Get the value of ballLost.
+     * @return A boolean value of ballLost.
+     */
     public boolean isBallLost(){
         return ballLost;
     }
 
+    /**
+     * Move the player to the start position.
+     * Move the ball to the start position.
+     * Randomly assign integer between -2 and 3 to speedX and
+     * randomly assign integer between 0 to -3 to speedY of the ball.
+     * Set the speed of the ball.
+     * Set ballLost to false.
+     */
     public void ballReset(){
         player.moveTo(startPoint);
         ball.moveTo(startPoint);
@@ -317,6 +422,10 @@ public class Wall {
         ballLost = false;
     }
 
+    /**
+     * Reset all the bricks to their original state.
+     * Set the brickCount to the length of the brick array.
+     */
     public void wallReset(){
         for(Brick b : bricks)
             b.repair();
@@ -325,35 +434,76 @@ public class Wall {
     }
 
 
+    /**
+     * Check if the there is no more ball.
+     * If ballCount equals to 0, then return true.
+     * Else, return false.
+     * @return A boolean value whether the ballCount equals to 0.
+     */
     public boolean ballEnd(){
         return ballCount == 0;
     }
 
+    /**
+     * Check if the level is done by the user. Check if all the bricks are destroyed by the user.
+     * If brickCount equals to 0, then return true.
+     * Else, return false.
+     * @return A boolean value whether the brickCount equals to 0.
+     */
     public boolean isDone(){
         return brickCount == 0;
     }
 
+    /**
+     * Go to the next level.
+     * Set the brickCount to the length of the brick array.
+     */
     public void nextLevel(){
         bricks = levels[level++];
         this.brickCount = bricks.length;
     }
 
+    /**
+     * Check if there is any level left.
+     * If level is less than the length of the levels array, then return true.
+     * Else, return false.
+     * @return A boolean value whether there is any levels left.
+     */
     public boolean hasLevel(){
         return level < levels.length;
     }
 
+    /**
+     * Set the value of speedX of the ball.
+     * @param s An int value containing the value for speedX of the ball.
+     */
     public void setBallXSpeed(int s){
         ball.setXSpeed(s);
     }
 
+    /**
+     * Set the value of speedY of the ball.
+     * @param s An int value containing the value for speedY of the ball.
+     */
     public void setBallYSpeed(int s){
         ball.setYSpeed(s);
     }
 
+    /**
+     * Reset the number of balls, ballCount.
+     * Set the ballCount to 3.
+     */
     public void resetBallCount(){
         ballCount = 3;
     }
 
+    /**
+     * Make the corresponding brick based on the type of the brick passed in to the method.
+     * @param point The position of the brick.
+     * @param size The size of the brick.
+     * @param type The type of the brick.
+     * @return A Brick object.
+     */
     private Brick makeBrick(Point point, Dimension size, int type){
         Brick out;
         switch(type){
@@ -378,21 +528,30 @@ public class Wall {
         return  out;
     }
 
+    /**
+     * Get all the bricks.
+     * @return A Brick array containing all the bricks.
+     */
     public Brick[] getBricks() {
         return bricks;
     }
 
+    /**
+     * Get the ball.
+     * @return A Ball object of the ball.
+     */
     public Ball getBall() {
         return ball;
     }
 
+    /**
+     * Get the player.
+     * @return A player object of the player.
+     */
     public static Player getPlayer() {
         return player;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
 
 
 }
