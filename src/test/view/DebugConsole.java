@@ -27,6 +27,9 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * This is the DebugConsole class which extends JDialog class and implements WindowListener interface.
+ */
 public class DebugConsole extends JDialog implements WindowListener{
 
     private static final String TITLE = "Debug Console";
@@ -39,6 +42,14 @@ public class DebugConsole extends JDialog implements WindowListener{
     private Wall wall;
 
 
+    /**
+     * Class constructor.
+     * Initialize the frame.
+     * Initialize a DebugPanel object and add the object to the frame.
+     * @param owner The JFrame object.
+     * @param wall The Wall object.
+     * @param gameController The GameController object.
+     */
     public DebugConsole(JFrame owner, Wall wall, GameController gameController){
 
         this.wall = wall;
@@ -53,6 +64,9 @@ public class DebugConsole extends JDialog implements WindowListener{
         this.pack();
     }
 
+    /**
+     * Initialize the dialog window.
+     */
     private void initialize(){
         this.setModal(true);
         this.setTitle(TITLE);
@@ -63,6 +77,9 @@ public class DebugConsole extends JDialog implements WindowListener{
     }
 
 
+    /**
+     * Set the location of the dialog window.
+     */
     private void setLocation(){
         int x = ((owner.getWidth() - this.getWidth()) / 2) + owner.getX();
         int y = ((owner.getHeight() - this.getHeight()) / 2) + owner.getY();
@@ -75,6 +92,10 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     }
 
+    /**
+     * Repaint all the components after the dialog window is closed.
+     * @param windowEvent A low-level event that indicates that a window has changed its status.
+     */
     @Override
     public void windowClosing(WindowEvent windowEvent) {
         gameController.repainting();
@@ -95,6 +116,11 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     }
 
+    /**
+     * Set the location of the dialog window.
+     * Set the current value of the slider to speedX and speedY of the ball.
+     * @param windowEvent A low-level even that indicates that a window has changed its status.
+     */
     @Override
     public void windowActivated(WindowEvent windowEvent) {
         setLocation();
