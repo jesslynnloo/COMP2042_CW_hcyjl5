@@ -57,7 +57,7 @@ abstract public class Ball {
     }
 
     /**
-     * An abstract class that does not have any implementation.
+     * An abstract method that does not have any implementation.
      * @param center The center point of the ball.
      * @param radiusA The width of the ball.
      * @param radiusB The height of the ball.
