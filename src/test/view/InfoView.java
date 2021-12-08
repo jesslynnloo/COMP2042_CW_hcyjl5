@@ -142,7 +142,7 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
      */
     @Override
     protected void paintComponent(Graphics g) {
-        Image image = Toolkit.getDefaultToolkit().getImage("info_background.jpg");
+        Image image = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Jesslynn\\Desktop\\Brick_Destroy-master\\Resources\\info_background.jpg");
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
         if(image != null) {

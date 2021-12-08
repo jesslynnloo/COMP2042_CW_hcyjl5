@@ -164,7 +164,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
      */
     @Override
     protected void paintComponent(Graphics g) {
-        Image image = Toolkit.getDefaultToolkit().getImage("icon.png");
+        Image image = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Jesslynn\\Desktop\\Brick_Destroy-master\\Resources\\icon.png");
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
         if(image != null) {
