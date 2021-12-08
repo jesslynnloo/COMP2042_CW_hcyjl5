@@ -22,6 +22,9 @@ import test.view.GameFrame;
 import java.awt.*;
 
 
+/**
+ * This is the GraphicsMain class.
+ */
 public class GraphicsMain {
 
     public static void main(String[] args){
