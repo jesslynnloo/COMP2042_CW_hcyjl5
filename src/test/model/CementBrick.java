@@ -26,7 +26,7 @@ public class CementBrick extends Brick {
     /**
      * Class constructor.
      * Initialize a Crack object.
-     * Initialize a HighScoreController object.
+     * Create a HighScoreController object.
      * @param point The position of the cement brick.
      * @param size The size of the cement brick.
      */
