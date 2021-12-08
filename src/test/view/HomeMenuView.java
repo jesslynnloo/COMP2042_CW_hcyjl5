@@ -27,6 +27,9 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
 
+/**
+ * This is the HomeMenuView class which extends JComponent and implements MouseListener and MouseMotionListener interface.
+ */
 public class HomeMenuView extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String GREETINGS = "Welcome to:";
@@ -70,6 +73,17 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     private int stringHeight;
     private HomeMenuController homeMenuController = new HomeMenuController(this);
 
+    /**
+     * Class constructor.
+     * Requests that this frame gets the input focus.
+     * Add mouse listener and mouse motion listener to the frame.
+     * Create and initialize a Rectangle object as menuFace.
+     * Set the preferred size of the frame.
+     * Create and initialize three Rectangle objects as the buttons.
+     * Set the font for the text.
+     * @param owner The GameFrame object.
+     * @param area The area of the menu.
+     */
     public HomeMenuView (GameFrame owner, Dimension area){
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -96,10 +110,18 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
     }
 
+    /**
+     * Paint all the components in the home menu window.
+     * @param g The Graphics object.
+     */
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
     }
 
+    /**
+     * Draw the menu.
+     * @param g2d The Graphics2D object.
+     */
     public void drawMenu(Graphics2D g2d){
 
         drawContainer(g2d);
@@ -127,11 +149,19 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         g2d.setColor(prevColor);
     }
 
+    /**
+     * Draw the container.
+     * @param g The Graphics object.
+     */
     private void drawContainer(Graphics g){
         paintComponent((Graphics2D) g);
 
     }
 
+    /**
+     * Draw the background image for the high score window.
+     * @param g The Graphics object.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         Image image = Toolkit.getDefaultToolkit().getImage("icon.png");
@@ -144,12 +174,22 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         }
     }
 
+    /**
+     * Draw all the text in the home menu window.
+     * @param g2d The Graphics2D object.
+     */
     private void drawAllText(Graphics2D g2d){
         drawText(g2d, greetingsFont, GREETINGS);
         drawText(g2d, gameTitleFont, GAME_TITLE);
         drawText(g2d, creditsFont, CREDITS);
     }
 
+    /**
+     * Draw the text at the specific position of the frame.
+     * @param g2d The Graphics2D object.
+     * @param font The font of the text.
+     * @param text The text to be drawn.
+     */
     private void drawText(Graphics2D g2d, Font font, String text){
         g2d.setColor(TEXT_COLOR);
 
@@ -172,12 +212,23 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 
     }
 
+    /**
+     * Draw all the buttons in the home menu.
+     * @param g2d The Graphics2D object.
+     */
     private void drawAllButton(Graphics2D g2d){
         drawButton(g2d, startButton, START_TEXT, homeMenuController.isStartClicked());
         drawButton(g2d, menuButton, MENU_TEXT, homeMenuController.isMenuClicked());
         drawButton(g2d, infoButton, INFO_TEXT, homeMenuController.isInfoClicked());
     }
 
+    /**
+     * Draw the button at the specific position of the frame.
+     * @param g2d The Graphics2D object.
+     * @param button The button to be drawn.
+     * @param buttonText The button text.
+     * @param buttonClicked A boolean value whether the button is clicked.
+     */
     private void drawButton(Graphics2D g2d, Rectangle button, String buttonText, boolean buttonClicked){
         FontRenderContext frc = g2d.getFontRenderContext();
         Rectangle2D txtRect;
@@ -228,16 +279,28 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         }
     }
 
+    /**
+     * Call the checkMouseClicked method in homeMenuController class when mouse is clicked.
+     * @param mouseEvent An event which indicates that a mouse action occurred in the component.
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         homeMenuController.checkMouseClicked(mouseEvent);
     }
 
+    /**
+     * Call the checkMousePressed method in homeMenuController class when mouse is pressed.
+     * @param mouseEvent An event which indicates that a mouse action occurred in the component.
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         homeMenuController.checkMousePressed(mouseEvent);
     }
 
+    /**
+     * Call the checkMouseReleased method in homeMenuController class when mouse is released.
+     * @param mouseEvent An event which indicates that a mouse action occurred in the component.
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         homeMenuController.checkMouseReleased(mouseEvent);
@@ -259,36 +322,66 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 
     }
 
+    /**
+     * Call the checkMouseMoved method in homeMenuController class when mouse is moved.
+     * @param mouseEvent An event which indicates that a mouse action occurred in the component.
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         homeMenuController.checkMouseMoved(mouseEvent);
     }
 
+    /**
+     * Get the startButton.
+     * @return A Rectangle object of startButton.
+     */
     public Rectangle getStartButton() {
         return startButton;
     }
 
+    /**
+     * Get the menuButton.
+     * @return A Rectangle object of menuButton.
+     */
     public Rectangle getMenuButton() {
         return menuButton;
     }
 
+    /**
+     * Get the infoButton.
+     * @return A Rectangle object of infoButton.
+     */
     public Rectangle getInfoButton() {
         return infoButton;
     }
 
+    /**
+     * Get the owner.
+     * @return A GameFrame object of owner.
+     */
     public GameFrame getOwner() {
         return owner;
     }
 
 
+    /**
+     * Repaint the button.
+     * @param button The button to be repainted.
+     */
     public void repainting (Rectangle button) {
         repaint(button.x,button.y,button.width+1,button.height+1);
     }
 
+    /**
+     * Set the cursor to the hand cursor.
+     */
     public void settingHandCursor () {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
+    /**
+     * Set the cursor to the default cursor.
+     */
     public void settingDefaultCursor () {
         this.setCursor(Cursor.getDefaultCursor());
     }

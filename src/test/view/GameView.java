@@ -12,7 +12,9 @@ import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 
 
-
+/**
+ * This is the GameView class which extends JComponent and implements KeyListener, MouseListener and MouseMotionListener interface.
+ */
 public class GameView extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
 
     private static final String CONTINUE = "Continue";
@@ -46,6 +48,18 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
 
     private GameController gameController = new GameController(this);
 
+    /**
+     * Class constructor.
+     * Set the strLen to 0.
+     * Set showPauseMenu to false.
+     * Set the menuFont.
+     * Initialize the frame.
+     * Initialize the message with an empty string.
+     * Create and initialize a Wall object.
+     * Create and initialize a DebugConsole object.
+     * Initialize the first level.
+     * @param owner The GameFrame object.
+     */
     public GameView(GameFrame owner){
         super();
         this.owner = owner;
@@ -65,7 +79,12 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
     }
 
 
-
+    /**
+     * Initialize the frame.
+     * Set the preferred size of the frame.
+     * Requests that this frame gets the input focus.
+     * Add key listener, mouse listener and mouse motion listener to the frame.
+     */
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setFocusable(true);
@@ -76,6 +95,11 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
     }
 
 
+    /**
+     * Paint all the components, message, ball, player and pause menu if the showPauseMenu is true.
+     * Synchronizes this toolkit's graphics state.
+     * @param g The Graphics object.
+     */
     public void paint(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
@@ -99,6 +123,10 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         Toolkit.getDefaultToolkit().sync();
     }
 
+    /**
+     * Fill the frame with BG_COLOR.
+     * @param g2d The Graphics2D object.
+     */
     private void clear(Graphics2D g2d){
         Color tmp = g2d.getColor();
         g2d.setColor(BG_COLOR);
@@ -106,6 +134,11 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         g2d.setColor(tmp);
     }
 
+    /**
+     * Draw the brick.
+     * @param brick The Brick object.
+     * @param g2d The Graphics2D object.
+     */
     private void drawBrick(Brick brick,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -119,6 +152,11 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         g2d.setColor(tmp);
     }
 
+    /**
+     * Draw the ball.
+     * @param ball The Ball object.
+     * @param g2d The Graphics2D object.
+     */
     private void drawBall(Ball ball, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -133,6 +171,11 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         g2d.setColor(tmp);
     }
 
+    /**
+     * Draw the player.
+     * @param p The Player object.
+     * @param g2d The Graphics2D object.
+     */
     private void drawPlayer(Player p, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -146,11 +189,20 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         g2d.setColor(tmp);
     }
 
+    /**
+     * Draw the pause menu.
+     * @param g2d The Graphics2D object.
+     */
     private void drawMenu(Graphics2D g2d){
         obscureGameBoard(g2d);
         drawPauseMenu(g2d);
     }
 
+    /**
+     * Do blending and transparency effects.
+     * Set the color to black and fill the frame with the color.
+     * @param g2d The Graphics2D object.
+     */
     private void obscureGameBoard(Graphics2D g2d){
 
         Composite tmp = g2d.getComposite();
@@ -166,6 +218,10 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         g2d.setColor(tmpColor);
     }
 
+    /**
+     * Draw the pause menu.
+     * @param g2d The Graphics2D object.
+     */
     private void drawPauseMenu(Graphics2D g2d){
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();
@@ -224,16 +280,29 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
     public void keyTyped(KeyEvent keyEvent) {
     }
 
+    /**
+     * Call the checkKeyPressed method in GameController class when key is pressed.
+     * @param keyEvent An event which indicates that a keystroke occurred in the component.
+     */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         gameController.checkKeyPressed(keyEvent);
     }
 
+    /**
+     * Call the checkKeyReleased method in GameController class when key is released.
+     * @param keyEvent An event which indicates that a keystroke occurred in the component.
+     */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         gameController.checkKeyReleased(keyEvent);
     }
 
+
+    /**
+     * Call the checkMouseClicked method in GameController class when mouse is clicked.
+     * @param mouseEvent An event which indicates that a mouse action occurred in the component.
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         gameController.checkMouseClicked(mouseEvent);
@@ -264,44 +333,82 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
 
     }
 
+    /**
+     * Call the checkMouseMoved method in GameController class when mouse is moved.
+     * @param mouseEvent An event which indicates that a mouse action occurred in the component.
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         gameController.checkMouseMoved(mouseEvent);
     }
 
+    /**
+     * Get the wall.
+     * @return The wall.
+     */
     public Wall getWall() {
         return wall;
     }
 
+    /**
+     * Set the message.
+     * @param message A String value containing value for the message.
+     */
     public void setMessage(String message) {
         this.message = message;
     }
 
+    /**
+     * Get the continueButtonRect.
+     * @return A Rectangle value of continueButtonRect.
+     */
     public Rectangle getContinueButtonRect() {
         return continueButtonRect;
     }
 
+    /**
+     * Get the exitButtonRect.
+     * @return A Rectangle value of exitButtonRect.
+     */
     public Rectangle getExitButtonRect() {
         return exitButtonRect;
     }
 
+    /**
+     * Get the restartButtonRect.
+     * @return A Rectangle value of restartButtonRect.
+     */
     public Rectangle getRestartButtonRect() {
         return restartButtonRect;
     }
 
+    /**
+     * Get the debugConsole.
+     * @return A DebugConsole object of debugConsole.
+     */
     public DebugConsole getDebugConsole() {
         return debugConsole;
     }
 
+    /**
+     * Get the owner.
+     * @return A GameFrame object of owner.
+     */
     public GameFrame getOwner() {
         return owner;
     }
 
 
+    /**
+     * Set the cursor to the hand cursor.
+     */
     public void setHandCursor () {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
+    /**
+     * Set the cursor to the default cursor.
+     */
     public void setDefaultCursor () {
         this.setCursor(Cursor.getDefaultCursor());
     }

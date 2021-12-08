@@ -11,6 +11,9 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
 
+/**
+ * This is the GameFrame class which extends JFrame and implements WindowFocusListener interface.
+ */
 public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
@@ -26,6 +29,16 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private boolean gaming;
 
+    /**
+     * Class constructor.
+     * Constructs a new frame that is initially invisible.
+     * Set gaming to false.
+     * Set the layout of the frame.
+     * Initialize GameView object, GameController object, HomeMenuView object, HomeMenuController object,
+     * HighScoreView object, HighScoreViewController object, InfoView object and InfoController object.
+     * Add the homeMenuView to the frame.
+     * Disables decorations for this frame.
+     */
     public GameFrame(){
         super();
 
@@ -52,6 +65,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * Initialize the frame.
+     */
     public void initialize(){
         this.setTitle(DEF_TITLE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -61,6 +77,14 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setResizable(false);
     }
 
+    /**
+     * Releases all the native screen resources used by this Window.
+     * Remove the homeMenuView.
+     * Add the game view to the frame.
+     * Enables decorations for this frame.
+     * Initialize the frame.
+     * Add window focus listener to this frame.
+     */
     public void enableGameBoard(){
         this.dispose();
         this.remove(homeMenuView);
@@ -72,6 +96,15 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * Releases all the native screen resources used by this window.
+     * Remove the highScoreView.
+     * Add the game view to the frame.
+     * Enables decorations for this frame.
+     * Initialize the frame.
+     * Add window focus listener to this frame.
+     * Reset the ball, the wall, the ball count, the score and the player face.
+     */
     public void enableGameBoardFromHighscore() {
         this.dispose();
         this.remove(highScoreView);
@@ -83,6 +116,15 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gameController.reset();
     }
 
+    /**
+     * Releases all the native screen resources used by this window.
+     * Remove the highScoreView.
+     * Add the homeMenuView to the frame.
+     * Disables decorations for this frame.
+     * Initialize the frame.
+     * Add window focus listener to this frame.
+     * Reset the ball, the wall, the ball count, the score and the player face.
+     */
     public void enableHomeMenu() {
         this.dispose();
         this.remove(highScoreView);
@@ -94,6 +136,14 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gameController.reset();
     }
 
+    /**
+     * Releases all the native screen resources used by this window.
+     * Remove the infoView.
+     * Add the homeMenuView to the frame.
+     * Disables decorations for this frame.
+     * Initialize the frame.
+     * Add window focus listener to this frame.
+     */
     public void enableHomeMenuFromInfo() {
         this.dispose();
         this.remove(infoView);
@@ -103,6 +153,14 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * Releases all the native screen resources used by this window.
+     * Remove the game view.
+     * Add the highScoreView to the frame.
+     * Disables decorations for this frame.
+     * Initialize the frame.
+     * Add window focus listener to this frame.
+     */
     public void enableHighScoreView() {
         this.dispose();
         this.remove(view);
@@ -112,6 +170,14 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * Releases all the native screen resources used by this window.
+     * Remove the homeMenuView.
+     * Add the infoView to the frame.
+     * Disables decorations for this frame.
+     * Initialize the frame.
+     * Add window focus listener to this frame.
+     */
     public void enableInfoView() {
         this.dispose();
         this.remove(homeMenuView);
@@ -121,6 +187,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * Locate the frame at the middle of the screen.
+     */
     private void autoLocate(){
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (size.width - this.getWidth()) / 2;
@@ -129,6 +198,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     }
 
 
+    /**
+     * Set gaming to true when the window gains focus.
+     * @param windowEvent A low-level event that indicates that a window has changed its status.
+     */
     @Override
     public void windowGainedFocus(WindowEvent windowEvent) {
         /*
@@ -142,6 +215,11 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gaming = true;
     }
 
+    /**
+     * If the value of gaming is true, call the onLostFocus() method in GameController class.
+     * Else, do nothing.
+     * @param windowEvent A low-level event that indicates that a window has changed its status.
+     */
     @Override
     public void windowLostFocus(WindowEvent windowEvent) {
         if(gaming)
