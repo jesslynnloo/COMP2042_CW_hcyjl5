@@ -94,7 +94,7 @@ public class GameController {
                 view.getWall().getPlayer().moveLeft();
                 break;
             case KeyEvent.VK_D:
-                view.getWall().getPlayer().movRight();
+                view.getWall().getPlayer().moveRight();
                 break;
             case KeyEvent.VK_ESCAPE:
                 showPauseMenu = !showPauseMenu;

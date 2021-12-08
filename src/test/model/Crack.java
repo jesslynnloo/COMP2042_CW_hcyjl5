@@ -7,6 +7,9 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
+/**
+ * This is the Crack class.
+ */
 public class Crack{
 
     private static final int CRACK_SECTIONS = 3;
@@ -29,6 +32,12 @@ public class Crack{
     private Random random;
 
 
+    /**
+     * Class constructor.
+     * @param brick The brick object.
+     * @param crackDepth An int value containing the crack depth value.
+     * @param steps An int value containing the steps value.
+     */
     public Crack(Brick brick, int crackDepth, int steps){
 
         this.brick = brick;
@@ -39,16 +48,27 @@ public class Crack{
     }
 
 
-
+    /**
+     * Draw the crack.
+     * @return A GeneralPath value of crack.
+     */
     public GeneralPath draw(){
 
         return crack;
     }
 
+    /**
+     * Reset the crack.
+     */
     public void reset(){
         crack.reset();
     }
 
+    /**
+     * Make a randomly generated path from the impact point in a direction.
+     * @param point The impact point on the brick.
+     * @param direction The direction of the crack.
+     */
     protected void makeCrack(Point2D point, int direction){
         Rectangle bounds = brick.getBrickFace().getBounds();
 
@@ -89,6 +109,11 @@ public class Crack{
         }
     }
 
+    /**
+     * Make a randomly generated path from the start point to the end point.
+     * @param start The start point.
+     * @param end The end point.
+     */
     protected void makeCrack(Point start, Point end){
 
         GeneralPath path = new GeneralPath();
@@ -120,12 +145,25 @@ public class Crack{
         crack.append(path,true);
     }
 
+    /**
+     * Generate a random number between bound and -bound.
+     * @param bound The bound value.
+     * @return An int value of the random generated integer.
+     */
     private int randomInBounds(int bound){
         int n = (bound * 2) + 1;
         random = new Random();
         return random.nextInt(n) - bound;
     }
 
+
+    /**
+     * Check if it is in the middle.
+     * @param i An arbitrary value.
+     * @param steps The crack sections of the crack.
+     * @param divisions The steps of the crack.
+     * @return A boolean value if it is in the middle.
+     */
     private boolean inMiddle(int i,int steps,int divisions){
         int low = (steps / divisions);
         int up = low * (divisions - 1);
@@ -133,6 +171,14 @@ public class Crack{
         return  (i > low) && (i < up);
     }
 
+    /**
+     * Create a random double value.
+     * If the random value is larger than the probability, then return random number between bound and -bound.
+     * Else, return 0.
+     * @param bound The bound value.
+     * @param probability The probability.
+     * @return An int value which is either 0 or random numbers between bound and -bound.
+     */
     private int jumps(int bound,double probability){
         random = new Random();
         if(random.nextDouble() > probability)
@@ -141,6 +187,13 @@ public class Crack{
 
     }
 
+    /**
+     * Make random point either horizontally or vertically.
+     * @param from The start point.
+     * @param to The end point.
+     * @param direction The direction, either horizontally or vertically.
+     * @return A Point value which contains the value of the random made point.
+     */
     private Point makeRandomPoint(Point from,Point to, int direction){
 
         Point out = new Point();

@@ -17,11 +17,12 @@
  */
 package test.model;
 
-import test.model.Ball;
-
 import java.awt.*;
 
 
+/**
+ * This is the Player class.
+ */
 public class Player {
 
 
@@ -39,6 +40,16 @@ public class Player {
     private Rectangle container;
 
 
+    /**
+     * Class constructor.
+     * Set moveAmount to 0.
+     * Make a rectangle as the playerFace.
+     * Calculate the min and max value.
+     * @param ballPoint The point of the ball position.
+     * @param width The width of the player.
+     * @param height The height of the player.
+     * @param container The container where the player is placed.
+     */
     public Player(Point ballPoint,int width,int height,Rectangle container) {
         this.ballPoint = ballPoint;
         this.container = container;
@@ -49,17 +60,32 @@ public class Player {
 
     }
 
+    /**
+     * Make a rectangle based on the width and height passed
+     * @param width The width of the rectangle.
+     * @param height The height of the rectangle.
+     * @return A Rectangle that is created using the width and the height passed.
+     */
     public Rectangle makeRectangle(int width,int height){
         Point p = new Point((int)(ballPoint.getX() - (width / 2)),(int)ballPoint.getY());
         return  new Rectangle(p,new Dimension(width,height));
     }
 
+    /**Update the width and the height of the player face based on the width and height passed.
+     * Calculate the min and max based on the updated width.
+     * @param width The updated width of the player face.
+     * @param height The updated height of the player face.
+     */
     public void updatePlayerFace(int width,int height) {
         playerFace = makeRectangle(width,height);
         min = container.x + (width / 2);
         max = min + container.width - width;
     }
 
+    /**
+     * Reset the player face to its original state.
+     * Reset the min and max value.
+     */
     public void resetPlayerFace() {
         int width = 150;
         int height = 10;
@@ -68,10 +94,19 @@ public class Player {
         max = min + container.width - width;
     }
 
+    /**
+     * Check if there is impact between the ball and the player.
+     * @param b The Ball object.
+     * @return A boolean value whether the ball is in impact with the player.
+     */
     public boolean impact(Ball b){
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.getDown()) ;
     }
 
+    /**
+     * Move the player.
+     * Do not allow the user to move the player beyond the border by using min and max value.
+     */
     public void move(){
         double x = ballPoint.getX() + moveAmount;
         if(x < min || x > max)
@@ -80,26 +115,48 @@ public class Player {
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
 
+    /**
+     * Move the player to the left.
+     */
     public void moveLeft(){
         moveAmount = -DEF_MOVE_AMOUNT;
     }
 
-    public void movRight(){
+    /**
+     * Move the player to the right.
+     */
+    public void moveRight(){
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
+    /**
+     * Stop the player.
+     */
     public void stop(){
         moveAmount = 0;
     }
 
+    /**
+     * Get the playerFace.
+     * @return A Shape value of playerFace.
+     */
     public static Shape getPlayerFace(){
         return playerFace;
     }
+
+    /**
+     * Get the width of the playerFace.
+     * @return An int value of the width of the playerFace.
+     */
     public static int getPlayerFaceWidth() {
         return playerFace.width;
     }
 
 
+    /**
+     * Move the player to a specific point.
+     * @param p The point where the player should be moved to.
+     */
     public void moveTo(Point p){
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
