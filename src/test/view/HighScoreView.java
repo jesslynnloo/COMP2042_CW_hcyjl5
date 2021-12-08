@@ -13,6 +13,9 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * This is the HighScoreView class which extends JComponent and implements MouseListener and MouseMotionListener interface.
+ */
 public class HighScoreView extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final int DEF_WIDTH = 600;
@@ -50,6 +53,13 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
 
     private HighScoreViewController highScoreViewController = new HighScoreViewController(this);
 
+    /**
+     * Class constructor.
+     * Initialize the frame.
+     * Create a new Rectangle object as the menuFace.
+     * Create three new Rectangle objects as the restartButton, homeMenuButton and exitButton.
+     * @param owner The GameFrame object.
+     */
     public HighScoreView(GameFrame owner) {
         this.owner = owner;
         this.initialize();
@@ -65,6 +75,12 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
 
     }
 
+    /**
+     * Initialize the frame.
+     * Set the preferred size of the frame.
+     * Requests that this frame gets the input focus.
+     * Add key listener, mouse listener and mouse motion listener to the frame.
+     */
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setLayout(new BorderLayout());
@@ -74,11 +90,19 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
         this.addMouseMotionListener(this);
     }
 
+    /**
+     * Paint all the components in the high score window.
+     * @param g The Graphics object.
+     */
     public void paint(Graphics g){
         drawHighScoreView((Graphics2D)g);
     }
 
 
+    /**
+     * Draw the high score view.
+     * @param g2d The Graphics2D object.
+     */
     private void drawHighScoreView(Graphics2D g2d) {
         drawContainer(g2d);
 
@@ -100,11 +124,19 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
         g2d.setColor(prevColor);
     }
 
+    /**
+     * Draw the container.
+     * @param g The Graphics object.
+     */
     private void drawContainer(Graphics g){
         paintComponent((Graphics2D) g);
 
     }
 
+    /**
+     * Draw the background image for the high score window.
+     * @param g The Graphics object.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         Image image = Toolkit.getDefaultToolkit().getImage("highscore_view_background.jpg");
@@ -118,11 +150,22 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
     }
 
 
+    /**
+     * Draw all the text in the high score window.
+     * @param g2d The Graphics2D object.
+     */
     private void drawAllText(Graphics2D g2d){
         drawText(g2d, font, SCORE_TEXT, HighScore.getSCORE());
         drawText(g2d, font, HIGHSCORE_TEXT, HighScore.getHighScore());
     }
 
+    /**
+     * Draw the text at the specific position of the frame.
+     * @param g2d The Graphics2D object.
+     * @param font The font of the text.
+     * @param text The text to be drawn.
+     * @param displayedScore The score to be displayed.
+     */
     private void drawText(Graphics2D g2d, Font font, String text, int displayedScore){
         g2d.setColor(TEXT_COLOR);
 
@@ -146,12 +189,23 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
 
     }
 
+    /**
+     * Draw all the buttons in the high score view.
+     * @param g2d The Graphics2D object.
+     */
     private void drawAllButton(Graphics2D g2d){
         drawButton(g2d, restartButton, RESTART_TEXT, highScoreViewController.isRestartClicked());
         drawButton(g2d, homeMenuButton, HOME_MENU_TEXT, highScoreViewController.isHomeMenuClicked());
         drawButton(g2d, exitButton, EXIT_TEXT, highScoreViewController.isExitClicked());
     }
 
+    /**
+     * Draw the button at the specific position of the frame.
+     * @param g2d The Graphics2D object.
+     * @param button The button to be drawn.
+     * @param buttonText The button text.
+     * @param buttonClicked A boolean value whether the button is clicked.
+     */
     private void drawButton(Graphics2D g2d, Rectangle button, String buttonText, boolean buttonClicked){
         FontRenderContext frc = g2d.getFontRenderContext();
         Rectangle2D txtRect;
@@ -202,20 +256,36 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
         }
     }
 
+    /**
+     * Repaint the button.
+     * @param button The button to be repainted.
+     */
     public void repainting (Rectangle button) {
         repaint(button.x,button.y,button.width+1,button.height+1);
     }
 
+    /**
+     * Call the checkMouseClicked method in HighScoreViewController class when mouse is clicked.
+     * @param e An event which indicates that a mouse action occurred in the component.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         highScoreViewController.checkMouseClicked(e);
     }
 
+    /**
+     * Call the checkMousePressed method in HighScoreViewController class when mouse is pressed.
+     * @param e An event which indicates that a mouse action occurred in the component.
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         highScoreViewController.checkMousePressed(e);
     }
 
+    /**
+     * Call the checkMouseReleased method in HighScoreViewController class when mouse is released.
+     * @param e An event which indicates that a mouse action occurred in the component.
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         highScoreViewController.checkMouseReleased(e);
@@ -236,31 +306,57 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
 
     }
 
+    /**
+     * Call the checkMouseMoved method in HighScoreViewController class when mouse is moved.
+     * @param e An event which indicates that a mouse action occurred in the component.
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         highScoreViewController.checkMouseMoved(e);
     }
 
+    /**
+     * Set the cursor to the hand cursor.
+     */
     public void settingHandCursor () {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
+    /**
+     * Set the cursor to the default cursor.
+     */
     public void settingDefaultCursor () {
         this.setCursor(Cursor.getDefaultCursor());
     }
 
+    /**
+     * Get the restartButton.
+     * @return A Rectangle object of restartButton.
+     */
     public Rectangle getRestartButton() {
         return restartButton;
     }
 
+    /**
+     * Get the homeMenuButton.
+     * @return A Rectangle object of homeMenuButton.
+     */
     public Rectangle getHomeMenuButton() {
         return homeMenuButton;
     }
 
+    /**
+     * Get the exitButton.
+     * @return A Rectangle object of exitButton.
+     */
     public Rectangle getExitButton() {
         return exitButton;
     }
 
+    /**
+     * Get the owner.
+     * @return A GameFrame object of owner.
+     */
     public GameFrame getOwner() {
         return owner;
     }
