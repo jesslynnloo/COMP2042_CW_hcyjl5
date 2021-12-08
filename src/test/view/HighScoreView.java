@@ -79,7 +79,7 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
      * Initialize the frame.
      * Set the preferred size of the frame.
      * Requests that this frame gets the input focus.
-     * Add key listener, mouse listener and mouse motion listener to the frame.
+     * Add mouse listener and mouse motion listener to the frame.
      */
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
