@@ -5,6 +5,7 @@ import test.controller.HighScoreViewController;
 import test.controller.HomeMenuController;
 import test.model.HighScore;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -12,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
 
 /**
  * This is the HighScoreView class which extends JComponent and implements MouseListener and MouseMotionListener interface.
@@ -139,7 +141,12 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
      */
     @Override
     protected void paintComponent(Graphics g) {
-        Image image = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Jesslynn\\Desktop\\Brick_Destroy-master\\Resources\\highscore_view_background.jpg");
+        Image image = null;
+        try {
+            image = ImageIO.read(getClass().getResource("/resources/highscore_view_background.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
         if(image != null) {
