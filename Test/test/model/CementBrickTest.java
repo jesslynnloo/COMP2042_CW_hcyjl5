@@ -64,6 +64,18 @@ class CementBrickTest {
     }
 
     @Test
+    void getStrength() {
+        cementBrick.setStrength(2);
+        assertEquals(2, cementBrick.getStrength());
+    }
+
+    @Test
+    void setStrength() {
+        cementBrick.setStrength(2);
+        assertEquals(2, cementBrick.getStrength());
+    }
+
+    @Test
     void makeBrickFace() {
         Point p = new Point(0,0);
         Dimension size = new Dimension(6,2);
