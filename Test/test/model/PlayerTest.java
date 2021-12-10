@@ -40,7 +40,6 @@ class PlayerTest {
 
     @Test
     void move() {
-        Ball b = new RubberBall(new Point(300,430));
         player.setMoveAmount(10);
         player.move();
         assertEquals(new Rectangle(new Point(235,430), new Dimension(150, 10)), Player.getPlayerFace());
