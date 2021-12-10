@@ -375,6 +375,8 @@ public class Wall {
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
     }
 
+
+
     /**
      * Get the value of number of bricks, brickCount.
      * @return An int value of brickCount.
@@ -397,6 +399,18 @@ public class Wall {
      */
     public boolean isBallLost(){
         return ballLost;
+    }
+
+    public void setBrickCount(int brickCount) {
+        this.brickCount = brickCount;
+    }
+
+    public void setBallCount(int ballCount) {
+        this.ballCount = ballCount;
+    }
+
+    public void setBallLost(boolean ballLost) {
+        this.ballLost = ballLost;
     }
 
     /**
@@ -463,6 +477,8 @@ public class Wall {
         this.brickCount = bricks.length;
     }
 
+
+
     /**
      * Check if there is any level left.
      * If level is less than the length of the levels array, then return true.
@@ -528,12 +544,18 @@ public class Wall {
         return  out;
     }
 
+
+
     /**
      * Get all the bricks.
      * @return A Brick array containing all the bricks.
      */
     public Brick[] getBricks() {
         return bricks;
+    }
+
+    public void setBricks(Brick[] bricks) {
+        this.bricks = bricks;
     }
 
     /**
@@ -544,12 +566,24 @@ public class Wall {
         return ball;
     }
 
+    public void setBall(Ball ball) {
+        this.ball = ball;
+    }
+
     /**
      * Get the player.
      * @return A player object of the player.
      */
     public static Player getPlayer() {
         return player;
+    }
+
+    public static void setPlayer(Player p) {
+        player = p;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
 

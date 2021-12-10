@@ -35,7 +35,7 @@ class PlayerTest {
     @Test
     void impact() {
         Ball b = new RubberBall(new Point(300,430));
-        assertTrue(player.getPlayerFace().contains(b.getPosition()) && player.getPlayerFace().contains(b.getDown()));
+        assertTrue(player.impact(b));
     }
 
     @Test
