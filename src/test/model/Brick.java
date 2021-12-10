@@ -144,6 +144,8 @@ abstract public class Brick  {
         strength = fullStrength;
     }
 
+
+
     /**
      * Minus the strength of the brick by 1 and check if the brick is broken.
      * Update the broken variable.
@@ -160,6 +162,10 @@ abstract public class Brick  {
      */
     public Shape getBrickFace() {
         return brickFace;
+    }
+
+    public int getStrength() {
+        return strength;
     }
 }
 
