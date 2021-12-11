@@ -52,7 +52,7 @@ public class HighScoreController {
      * Create a file named "score.txt" if the file does not exist.
      * @throws IOException If an input or output exception occurred.
      */
-    public void createFile () throws IOException {
+    private void createFile () throws IOException {
         file  = new File("score.txt");
         boolean result = file.createNewFile();
     }
