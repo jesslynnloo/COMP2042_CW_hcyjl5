@@ -34,8 +34,10 @@ public class SteelBrick extends Brick {
     private static final Color DEF_INNER = new Color(203, 203, 201);
     private static final Color DEF_BORDER = Color.BLACK;
     private static final int STEEL_STRENGTH = 1;
-    private static final double STEEL_PROBABILITY = 0.4;
+    public static final double STEEL_PROBABILITY = 0.4;
     private static final int SCORE_FOR_STEEL_BRICK = 30;
+
+
 
     private Random rnd;
     private Shape brickFace;
@@ -107,6 +109,14 @@ public class SteelBrick extends Brick {
         if(rnd.nextDouble() < STEEL_PROBABILITY){
             super.impact();
         }
+    }
+
+    public Random getRnd() {
+        return rnd;
+    }
+
+    public void setRnd(Random rnd) {
+        this.rnd = rnd;
     }
 
 }
