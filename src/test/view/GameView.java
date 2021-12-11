@@ -115,7 +115,7 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
             if(!b.isBroken())
                 drawBrick(b,g2d);
 
-        drawPlayer(wall.getPlayer(),g2d);
+        drawPlayer(Wall.getPlayer(),g2d);
 
         if(gameController.isShowPauseMenu())
             drawMenu(g2d);
@@ -356,6 +356,10 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
      */
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     /**

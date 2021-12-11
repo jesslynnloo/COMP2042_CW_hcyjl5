@@ -15,7 +15,7 @@ public class WoodenBrick extends Brick {
     private static final Color DEF_INNER = new Color(100,70,36);
     private static final Color DEF_BORDER = DEF_INNER.darker();
     private static final int WOODEN_STRENGTH = 1;
-    private static final double WOODEN_PROBABILITY = 0.6;
+    public static final double WOODEN_PROBABILITY = 0.6;
     private static final int SCORE_FOR_WOODEN_BRICK = 15;
 
     private Random rnd;
@@ -88,6 +88,10 @@ public class WoodenBrick extends Brick {
         if(rnd.nextDouble() < WOODEN_PROBABILITY){
             super.impact();
         }
+    }
+
+    public Random getRnd() {
+        return rnd;
     }
 
 }

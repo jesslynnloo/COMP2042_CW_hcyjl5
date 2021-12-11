@@ -1,7 +1,5 @@
 package test.model;
 
-import test.model.Brick;
-
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
@@ -114,7 +112,7 @@ public class Crack{
      * @param start The start point.
      * @param end The end point.
      */
-    protected void makeCrack(Point start, Point end){
+    private void makeCrack(Point start, Point end){
 
         GeneralPath path = new GeneralPath();
 

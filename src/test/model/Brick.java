@@ -1,7 +1,5 @@
 package test.model;
 
-import test.model.Ball;
-
 import java.awt.*;
 import java.awt.Point;
 import java.awt.geom.Point2D;
@@ -13,7 +11,6 @@ import java.util.Random;
  */
 abstract public class Brick  {
 
-//    public static final int MIN_CRACK = 1;
     public static final int DEF_CRACK_DEPTH = 1;
     public static final int DEF_STEPS = 35;
 
@@ -144,6 +141,8 @@ abstract public class Brick  {
         strength = fullStrength;
     }
 
+
+
     /**
      * Minus the strength of the brick by 1 and check if the brick is broken.
      * Update the broken variable.
@@ -160,6 +159,14 @@ abstract public class Brick  {
      */
     public Shape getBrickFace() {
         return brickFace;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 }
 

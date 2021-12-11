@@ -34,7 +34,13 @@ public class Player {
     private static Rectangle playerFace;
 
     private Point ballPoint;
+
+
+
     private int moveAmount;
+
+
+
     private int min;
     private int max;
     private Rectangle container;
@@ -152,6 +158,10 @@ public class Player {
         return playerFace.width;
     }
 
+    public static void setPlayerFaceWidth(int width) {
+        playerFace.width = width;
+    }
+
 
     /**
      * Move the player to a specific point.
@@ -161,4 +171,13 @@ public class Player {
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
+
+    public int getMoveAmount() {
+        return moveAmount;
+    }
+
+    public void setMoveAmount(int moveAmount) {
+        this.moveAmount = moveAmount;
+    }
+
 }

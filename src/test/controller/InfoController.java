@@ -70,11 +70,17 @@ public class InfoController {
             infoView.settingDefaultCursor();
     }
 
+
+
     /**
      * Get the value of backClicked.
      * @return A boolean value of backClicked.
      */
     public boolean isBackClicked() {
         return backClicked;
+    }
+
+    public void setBackClicked(boolean backClicked) {
+        this.backClicked = backClicked;
     }
 }

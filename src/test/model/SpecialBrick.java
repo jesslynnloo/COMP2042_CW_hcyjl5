@@ -14,9 +14,6 @@ public class SpecialBrick extends Brick{
     private static final Color DEF_INNER = new Color(144, 238, 144);
     private static final Color DEF_BORDER = new Color(255,255,180);
     private static final int SPECIAL_BRICK_STRENGTH = 1;
-    private PlayerController playerController;
-
-
 
 
     private static int extendedWidth;
@@ -59,7 +56,7 @@ public class SpecialBrick extends Brick{
         super.impact();
         if(super.isBroken()) {
             extendedWidth += 50;
-            playerController = new PlayerController(Wall.getPlayer());
+            PlayerController playerController = new PlayerController(Wall.getPlayer());
             playerController.adjustPlayer(Player.getPlayerFaceWidth() + extendedWidth,10);
         }
         return super.isBroken();
@@ -80,5 +77,9 @@ public class SpecialBrick extends Brick{
      */
     public static void setExtendedWidth(int extendedWidth) {
         SpecialBrick.extendedWidth = extendedWidth;
+    }
+
+    public static int getExtendedWidth() {
+        return extendedWidth;
     }
 }

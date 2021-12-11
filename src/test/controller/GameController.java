@@ -35,7 +35,7 @@ public class GameController {
     /**
      * Implement a game timer.
      */
-    public void timer () {
+    private void timer () {
         gameTimer = new Timer(10, e ->{
             view.getWall().move();
             view.getWall().findImpacts();
@@ -75,6 +75,7 @@ public class GameController {
 
     }
 
+
     /**
      * Called when the window lost focus.
      */
@@ -91,10 +92,10 @@ public class GameController {
     public void checkKeyPressed (KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
             case KeyEvent.VK_A:
-                view.getWall().getPlayer().moveLeft();
+                Wall.getPlayer().moveLeft();
                 break;
             case KeyEvent.VK_D:
-                view.getWall().getPlayer().moveRight();
+                Wall.getPlayer().moveRight();
                 break;
             case KeyEvent.VK_ESCAPE:
                 showPauseMenu = !showPauseMenu;
@@ -112,7 +113,7 @@ public class GameController {
                 if(keyEvent.isAltDown() && keyEvent.isShiftDown())
                     view.getDebugConsole().setVisible(true);
             default:
-                view.getWall().getPlayer().stop();
+                Wall.getPlayer().stop();
         }
     }
 
@@ -121,7 +122,7 @@ public class GameController {
      * @param keyEvent Event which indicates that a keystroke occurred.
      */
     public void checkKeyReleased (KeyEvent keyEvent) {
-        view.getWall().getPlayer().stop();
+        Wall.getPlayer().stop();
     }
 
     /**
@@ -197,4 +198,9 @@ public class GameController {
         highScoreController.restartScore();
         Wall.getPlayer().resetPlayerFace();
     }
+
+    public GameView getView() {
+        return view;
+    }
+
 }

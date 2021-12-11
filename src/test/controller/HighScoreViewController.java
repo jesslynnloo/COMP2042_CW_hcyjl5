@@ -25,12 +25,22 @@ public class HighScoreViewController {
         this.highScoreView = highScoreView;
     }
 
+
+
+
+
+
+
     /**
      * Get the value of restartClicked.
      * @return A boolean value of restartClicked.
      */
     public boolean isRestartClicked() {
         return restartClicked;
+    }
+
+    public void setRestartClicked(boolean restartClicked) {
+        this.restartClicked = restartClicked;
     }
 
 
@@ -42,6 +52,9 @@ public class HighScoreViewController {
         return homeMenuClicked;
     }
 
+    public void setHomeMenuClicked(boolean homeMenuClicked) {
+        this.homeMenuClicked = homeMenuClicked;
+    }
 
     /**
      * Get the value of exitClicked.
@@ -51,6 +64,9 @@ public class HighScoreViewController {
         return exitClicked;
     }
 
+    public void setExitClicked(boolean exitClicked) {
+        this.exitClicked = exitClicked;
+    }
 
     /**
      * Do the corresponding action when the user clicks the buttons.

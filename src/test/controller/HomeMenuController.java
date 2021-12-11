@@ -1,6 +1,5 @@
 package test.controller;
 
-import test.view.GameFrame;
 import test.view.HomeMenuView;
 
 import java.awt.*;
@@ -16,9 +15,6 @@ public class HomeMenuController {
     private boolean startClicked;
     private boolean menuClicked;
     private boolean infoClicked;
-    private Timer timer;
-    private TimerController timerController;
-    private TimerTaskController timerTaskController;
 
     /**
      * Class constructor.
@@ -37,9 +33,9 @@ public class HomeMenuController {
         Point p = mouseEvent.getPoint();
         if(homeMenuView.getStartButton().contains(p)){
             homeMenuView.getOwner().enableGameBoard();
-            timer = new Timer();
-            timerTaskController = new TimerTaskController();
-            timerController = new TimerController(timerTaskController,timer);
+            Timer timer = new Timer();
+            TimerTaskController timerTaskController = new TimerTaskController();
+            TimerController timerController = new TimerController(timerTaskController, timer);
 
         }
         else if(homeMenuView.getInfoButton().contains(p)){
@@ -108,12 +104,22 @@ public class HomeMenuController {
             homeMenuView.settingDefaultCursor();
     }
 
+
+
+
+
+
+
     /**
      * Get the value of startClicked.
      * @return A boolean value of startClicked.
      */
     public boolean isStartClicked() {
         return startClicked;
+    }
+
+    public void setStartClicked(boolean startClicked) {
+        this.startClicked = startClicked;
     }
 
     /**
@@ -124,11 +130,19 @@ public class HomeMenuController {
         return menuClicked;
     }
 
+    public void setMenuClicked(boolean menuClicked) {
+        this.menuClicked = menuClicked;
+    }
+
     /**
      * Get the value of infoClicked.
      * @return A boolean value of infoClicked.
      */
     public boolean isInfoClicked() {
         return infoClicked;
+    }
+
+    public void setInfoClicked(boolean infoClicked) {
+        this.infoClicked = infoClicked;
     }
 }

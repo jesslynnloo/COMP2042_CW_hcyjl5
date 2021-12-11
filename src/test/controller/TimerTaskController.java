@@ -19,7 +19,7 @@ public class TimerTaskController extends TimerTask {
         if(Player.getPlayerFaceWidth() >= 90) {
             shortenLength = 20;
         }
-        else if(Player.getPlayerFaceWidth() > 70 && Player.getPlayerFaceWidth() < 90) {
+        else if(Player.getPlayerFaceWidth() > 70) {
             shortenLength = Player.getPlayerFaceWidth() - 70;
         }
         else{

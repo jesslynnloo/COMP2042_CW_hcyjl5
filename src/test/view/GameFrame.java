@@ -1,9 +1,6 @@
 package test.view;
 
 import test.controller.GameController;
-import test.controller.HighScoreViewController;
-import test.controller.HomeMenuController;
-import test.controller.InfoController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,12 +17,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private GameView view;
     private GameController gameController;
-    private HomeMenuController homeMenuController;
     private HomeMenuView homeMenuView;
     private HighScoreView highScoreView;
-    private HighScoreViewController highScoreViewController;
     private InfoView infoView;
-    private InfoController infoController;
 
     private boolean gaming;
 
@@ -50,13 +44,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gameController = new GameController(view);
 
         homeMenuView = new HomeMenuView(this, new Dimension(450, 300));
-        homeMenuController = new HomeMenuController(homeMenuView);
 
         highScoreView = new HighScoreView(this);
-        highScoreViewController = new HighScoreViewController(highScoreView);
 
         infoView = new InfoView(this);
-        infoController = new InfoController(infoView);
 
         this.add(homeMenuView,BorderLayout.CENTER);
 
