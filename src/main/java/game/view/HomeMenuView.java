@@ -159,7 +159,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     protected void paintComponent(Graphics g) {
         Image image = null;
         try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/icon.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/icon.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
