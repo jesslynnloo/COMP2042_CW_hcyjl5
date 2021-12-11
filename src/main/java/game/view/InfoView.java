@@ -1,7 +1,6 @@
 package game.view;
 
-import game.controller.HighScoreViewController;
-import game.model.HighScore;
+import game.controller.InfoController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,65 +14,66 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * This is the HighScoreView class which extends JComponent and implements MouseListener and MouseMotionListener interface.
+ * This is the InfoView class which extends JComponent and implements MouseListener and MouseMotionListener interface.
  */
-public class HighScoreView extends JComponent implements MouseListener, MouseMotionListener {
+public class InfoView extends JComponent implements MouseListener, MouseMotionListener {
+
+
+    private GameFrame owner;
 
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
 
 
-
-    private Rectangle restartButton;
-    private Rectangle homeMenuButton;
-    private Rectangle exitButton;
-
-    private static final String RESTART_TEXT = "Restart";
-    private static final String HOME_MENU_TEXT = "Home Menu";
-    private static final String EXIT_TEXT = "Exit";
-
-    private static final String SCORE_TEXT = "Your score is: ";
-    private static final String HIGHSCORE_TEXT = "The highscore is: ";
-
-    private Font buttonFont;
-
-    private static final Color BG_COLOR = Color.WHITE.darker();
-    private static final Color TEXT_COLOR = Color.BLACK;
-    private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
-    private static final Color CLICKED_TEXT = Color.WHITE;
-
-    private int stringHeight;
-
-    Font font = new Font("TimesRoman", Font.PLAIN, 18);
+    private Rectangle backButton;
 
     private Rectangle menuFace;
 
+    private static final String INFO_TEXT = "Info Screen";
+    private static final String BACK_TEXT = "Back";
 
+    private static final String info1 = "1. Player's goal is to destroy a wall with a small ball.";
+    private static final String info2 = "2. SPACE start/pause the game.";
+    private static final String info3 = "3. A move left the player.";
+    private static final String info4 = "4. D move right the player.";
+    private static final String info5 = "5. ESC enter/exit pause menu.";
+    private static final String info6 = "6. ALT+SHITF+F1 open console.";
+    private static final String info7 = "7. The game automatically pause if the frame loses focus.";
 
-    private GameFrame owner;
+    private static final Color BG_COLOR = Color.WHITE.darker();
+    private static final Color TEXT_COLOR = new Color(101, 67, 33);//egyptian blue
+    private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
+    private static final Color CLICKED_TEXT = Color.WHITE;
 
-    private HighScoreViewController highScoreViewController = new HighScoreViewController(this);
+    private Font buttonFont;
+    private Font titleFont;
+    private Font infoFont;
+
+    private InfoController infoController = new InfoController(this);
+
+    int stringHeight;
 
     /**
      * Class constructor.
      * Initialize the frame.
-     * Create a new Rectangle object as the menuFace.
-     * Create three new Rectangle objects as the restartButton, homeMenuButton and exitButton.
+     * Create and initialize a rectangle object as the menuFace.
+     * Create and initialize a rectangle object as the button.
+     * Set the font of the text.
      * @param owner The GameFrame object.
      */
-    public HighScoreView(GameFrame owner) {
+    public InfoView(GameFrame owner) {
         this.owner = owner;
         this.initialize();
 
-        menuFace = new Rectangle(new Point(0,0),new Dimension(DEF_WIDTH, DEF_HEIGHT));
-        Dimension btnDim = new Dimension(DEF_WIDTH / 3, DEF_HEIGHT / 12);
-        restartButton = new Rectangle(btnDim);
-        homeMenuButton = new Rectangle(btnDim);
-        exitButton = new Rectangle(btnDim);
 
+        menuFace = new Rectangle(new Point(0,0),new Dimension(DEF_WIDTH,DEF_HEIGHT));
 
-        buttonFont = new Font("Monospaced",Font.PLAIN,restartButton.height-2);
+        Dimension btnDim = new Dimension(DEF_WIDTH / 5, DEF_HEIGHT / 15);
+        backButton = new Rectangle(btnDim);
 
+        titleFont = new Font("Noto Mono",Font.PLAIN,25);
+        infoFont = new Font("Merlin", Font.PLAIN, 20);
+        buttonFont = new Font("Monospaced",Font.PLAIN,backButton.height-2);
     }
 
     /**
@@ -92,21 +92,26 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
     }
 
     /**
-     * Paint all the components in the high score window.
+     * Paint all the components in the info window.
      * @param g The Graphics object.
      */
     public void paint(Graphics g){
-        drawHighScoreView((Graphics2D)g);
+        drawMenu((Graphics2D)g);
     }
 
-
     /**
-     * Draw the high score view.
+     * Draw the info menu.
      * @param g2d The Graphics2D object.
      */
-    private void drawHighScoreView(Graphics2D g2d) {
+    public void drawMenu(Graphics2D g2d){
+
         drawContainer(g2d);
 
+        /*
+        all the following method calls need a relative
+        painting directly into the HomeMenu rectangle,
+        so the translation is made here so the other methods do not do that.
+         */
         Color prevColor = g2d.getColor();
         Font prevFont = g2d.getFont();
 
@@ -135,14 +140,14 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
     }
 
     /**
-     * Draw the background image for the high score window.
+     * Draw the background image for the info window.
      * @param g The Graphics object.
      */
     @Override
     protected void paintComponent(Graphics g) {
         Image image = null;
         try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/highscore_view_background.jpg")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/info_background.jpg")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -155,14 +160,21 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
         }
     }
 
-
     /**
-     * Draw all the text in the high score window.
+     * Draw all the text in the info window.
      * @param g2d The Graphics2D object.
      */
     private void drawAllText(Graphics2D g2d){
-        drawText(g2d, font, SCORE_TEXT, HighScore.getSCORE());
-        drawText(g2d, font, HIGHSCORE_TEXT, HighScore.getHighScore());
+        drawText(g2d, titleFont, INFO_TEXT);
+        drawText(g2d, infoFont, info1);
+        drawText(g2d, infoFont, info2);
+        drawText(g2d, infoFont, info3);
+        drawText(g2d, infoFont, info4);
+        drawText(g2d, infoFont, info5);
+        drawText(g2d, infoFont, info6);
+        drawText(g2d, infoFont, info7);
+
+
     }
 
     /**
@@ -170,9 +182,8 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
      * @param g2d The Graphics2D object.
      * @param font The font of the text.
      * @param text The text to be drawn.
-     * @param displayedScore The score to be displayed.
      */
-    private void drawText(Graphics2D g2d, Font font, String text, int displayedScore){
+    private void drawText(Graphics2D g2d, Font font, String text){
         g2d.setColor(TEXT_COLOR);
 
         FontRenderContext frc = g2d.getFontRenderContext();
@@ -181,28 +192,27 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
         int sX;
 
 
-        sX = (int)(menuFace.getWidth() - textRect.getWidth()) / 2;
 
-        if(text.equals(SCORE_TEXT)){
-            stringHeight = (int)(menuFace.getHeight() / 4);
+        if(text.equals(INFO_TEXT)){
+            sX = (int)(menuFace.getWidth() - textRect.getWidth()) / 2;
+            stringHeight = (int)(menuFace.getHeight() / 12);
         }
         else{
-            stringHeight += (int) textRect.getHeight() * 1.1;//add 10% of String height between the two strings
+            sX = (int)(menuFace.getWidth()) / 10;
+            stringHeight += (int) textRect.getHeight() * 2;//add 10% of String height between the two strings
         }
 
         g2d.setFont(font);
-        g2d.drawString(text + displayedScore,sX,stringHeight);
+        g2d.drawString(text,sX,stringHeight);
 
     }
 
     /**
-     * Draw all the buttons in the high score view.
+     * Draw all the buttons in the info window.
      * @param g2d The Graphics2D object.
      */
     private void drawAllButton(Graphics2D g2d){
-        drawButton(g2d, restartButton, RESTART_TEXT, highScoreViewController.isRestartClicked());
-        drawButton(g2d, homeMenuButton, HOME_MENU_TEXT, highScoreViewController.isHomeMenuClicked());
-        drawButton(g2d, exitButton, EXIT_TEXT, highScoreViewController.isExitClicked());
+        drawButton(g2d, backButton, BACK_TEXT, infoController.isBackClicked());
     }
 
     /**
@@ -215,26 +225,10 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
     private void drawButton(Graphics2D g2d, Rectangle button, String buttonText, boolean buttonClicked){
         FontRenderContext frc = g2d.getFontRenderContext();
         Rectangle2D txtRect;
-        int x = 0, y = 0;
+        int x,y;
 
-        if(buttonText.equals(RESTART_TEXT)){
-            x = (menuFace.width - restartButton.width) / 2;
-            y =(int) ((menuFace.height - restartButton.height) * 0.5);
-        }
-
-        else if(buttonText.equals(HOME_MENU_TEXT)){
-            x = restartButton.x;
-            y = restartButton.y;
-
-            y *= 1.2;
-        }
-
-        else if(buttonText.equals(EXIT_TEXT)) {
-            x = restartButton.x;
-            y = restartButton.y;
-
-            y *= 1.4;
-        }
+        x = (menuFace.width - backButton.width) / 35;
+        y =(int) ((menuFace.height - backButton.height) * 0.98);
 
         txtRect = buttonFont.getStringBounds(buttonText,frc);
         g2d.setFont(buttonFont);
@@ -245,7 +239,7 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
         y = (int)(button.getHeight() - txtRect.getHeight()) / 2;
 
         x += button.x;
-        y += button.y + (restartButton.height * 0.9);
+        y += button.y + (backButton.height * 0.9);
 
         if(buttonClicked){
             Color tmp = g2d.getColor();
@@ -263,38 +257,30 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
     }
 
     /**
-     * Repaint the button.
-     * @param button The button to be repainted.
-     */
-    public void repainting (Rectangle button) {
-        repaint(button.x,button.y,button.width+1,button.height+1);
-    }
-
-    /**
-     * Call the checkMouseClicked method in HighScoreViewController class when mouse is clicked.
+     * Call the checkMouseClicked method in InfoController class when mouse is clicked.
      * @param e An event which indicates that a mouse action occurred in the component.
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        highScoreViewController.checkMouseClicked(e);
+        infoController.checkMouseClicked(e);
     }
 
     /**
-     * Call the checkMousePressed method in HighScoreViewController class when mouse is pressed.
+     * Call the checkMousePressed method in InfoController class when mouse is pressed.
      * @param e An event which indicates that a mouse action occurred in the component.
      */
     @Override
     public void mousePressed(MouseEvent e) {
-        highScoreViewController.checkMousePressed(e);
+        infoController.checkMousePressed(e);
     }
 
     /**
-     * Call the checkMouseReleased method in HighScoreViewController class when mouse is released.
+     * Call the checkMouseReleased method in InfoController class when mouse is released.
      * @param e An event which indicates that a mouse action occurred in the component.
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-        highScoreViewController.checkMouseReleased(e);
+        infoController.checkMouseReleased(e);
     }
 
     @Override
@@ -313,12 +299,20 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
     }
 
     /**
-     * Call the checkMouseMoved method in HighScoreViewController class when mouse is moved.
+     * Call the checkMouseMoved method in InfoController class when mouse is moved.
      * @param e An event which indicates that a mouse action occurred in the component.
      */
     @Override
     public void mouseMoved(MouseEvent e) {
-        highScoreViewController.checkMouseMoved(e);
+        infoController.checkMouseMoved(e);
+    }
+
+    /**
+     * Repaint the button.
+     * @param button The button to be repainted.
+     */
+    public void repainting (Rectangle button) {
+        repaint(button.x,button.y,button.width+1,button.height+1);
     }
 
     /**
@@ -336,27 +330,11 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
     }
 
     /**
-     * Get the restartButton.
-     * @return A Rectangle object of restartButton.
+     * Get the backButton.
+     * @return A Rectangle object of backButton.
      */
-    public Rectangle getRestartButton() {
-        return restartButton;
-    }
-
-    /**
-     * Get the homeMenuButton.
-     * @return A Rectangle object of homeMenuButton.
-     */
-    public Rectangle getHomeMenuButton() {
-        return homeMenuButton;
-    }
-
-    /**
-     * Get the exitButton.
-     * @return A Rectangle object of exitButton.
-     */
-    public Rectangle getExitButton() {
-        return exitButton;
+    public Rectangle getBackButton() {
+        return backButton;
     }
 
     /**
@@ -366,4 +344,5 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
     public GameFrame getOwner() {
         return owner;
     }
+
 }
