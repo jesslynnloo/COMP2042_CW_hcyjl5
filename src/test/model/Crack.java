@@ -1,7 +1,5 @@
 package test.model;
 
-import test.model.Brick;
-
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;

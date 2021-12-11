@@ -18,7 +18,6 @@
 package test.model;
 
 import test.controller.HighScoreController;
-import test.model.Brick;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

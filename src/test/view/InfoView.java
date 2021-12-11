@@ -11,6 +11,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * This is the InfoView class which extends JComponent and implements MouseListener and MouseMotionListener interface.
@@ -134,7 +135,7 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
      * @param g The Graphics object.
      */
     private void drawContainer(Graphics g){
-        paintComponent((Graphics2D) g);
+        paintComponent(g);
 
     }
 
@@ -146,7 +147,7 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
     protected void paintComponent(Graphics g) {
         Image image = null;
         try {
-            image = ImageIO.read(getClass().getResource("/resources/info_background.jpg"));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/info_background.jpg")));
         } catch (IOException e) {
             e.printStackTrace();
         }

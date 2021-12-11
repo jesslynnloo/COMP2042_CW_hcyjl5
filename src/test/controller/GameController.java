@@ -92,10 +92,10 @@ public class GameController {
     public void checkKeyPressed (KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
             case KeyEvent.VK_A:
-                view.getWall().getPlayer().moveLeft();
+                Wall.getPlayer().moveLeft();
                 break;
             case KeyEvent.VK_D:
-                view.getWall().getPlayer().moveRight();
+                Wall.getPlayer().moveRight();
                 break;
             case KeyEvent.VK_ESCAPE:
                 showPauseMenu = !showPauseMenu;
@@ -113,7 +113,7 @@ public class GameController {
                 if(keyEvent.isAltDown() && keyEvent.isShiftDown())
                     view.getDebugConsole().setVisible(true);
             default:
-                view.getWall().getPlayer().stop();
+                Wall.getPlayer().stop();
         }
     }
 
@@ -122,7 +122,7 @@ public class GameController {
      * @param keyEvent Event which indicates that a keystroke occurred.
      */
     public void checkKeyReleased (KeyEvent keyEvent) {
-        view.getWall().getPlayer().stop();
+        Wall.getPlayer().stop();
     }
 
     /**

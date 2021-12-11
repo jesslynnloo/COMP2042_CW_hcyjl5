@@ -75,6 +75,12 @@ class PlayerTest {
     }
 
     @Test
+    void setPlayerFaceWidth() {
+        Player.setPlayerFaceWidth(200);
+        assertEquals(200, Player.getPlayerFaceWidth());
+    }
+
+    @Test
     void moveTo() {
         Point point = new Point(300,430);
         player.moveTo(point);

@@ -17,8 +17,6 @@
  */
 package test.model;
 
-import test.controller.*;
-
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
@@ -580,10 +578,6 @@ public class Wall {
 
     public static void setPlayer(Player p) {
         player = p;
-    }
-
-    public int getLevel() {
-        return level;
     }
 
 

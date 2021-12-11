@@ -1,8 +1,6 @@
 package test.view;
 
-import test.controller.HighScoreController;
 import test.controller.HighScoreViewController;
-import test.controller.HomeMenuController;
 import test.model.HighScore;
 
 import javax.imageio.ImageIO;
@@ -14,6 +12,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * This is the HighScoreView class which extends JComponent and implements MouseListener and MouseMotionListener interface.
@@ -131,7 +130,7 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
      * @param g The Graphics object.
      */
     private void drawContainer(Graphics g){
-        paintComponent((Graphics2D) g);
+        paintComponent(g);
 
     }
 
@@ -143,7 +142,7 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
     protected void paintComponent(Graphics g) {
         Image image = null;
         try {
-            image = ImageIO.read(getClass().getResource("/resources/highscore_view_background.jpg"));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/highscore_view_background.jpg")));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,5 @@
 package test.controller;
 
-import test.view.GameFrame;
 import test.view.HomeMenuView;
 
 import java.awt.*;
@@ -16,9 +15,6 @@ public class HomeMenuController {
     private boolean startClicked;
     private boolean menuClicked;
     private boolean infoClicked;
-    private Timer timer;
-    private TimerController timerController;
-    private TimerTaskController timerTaskController;
 
     /**
      * Class constructor.
@@ -37,9 +33,9 @@ public class HomeMenuController {
         Point p = mouseEvent.getPoint();
         if(homeMenuView.getStartButton().contains(p)){
             homeMenuView.getOwner().enableGameBoard();
-            timer = new Timer();
-            timerTaskController = new TimerTaskController();
-            timerController = new TimerController(timerTaskController,timer);
+            Timer timer = new Timer();
+            TimerTaskController timerTaskController = new TimerTaskController();
+            TimerController timerController = new TimerController(timerTaskController, timer);
 
         }
         else if(homeMenuView.getInfoButton().contains(p)){

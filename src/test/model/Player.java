@@ -158,6 +158,10 @@ public class Player {
         return playerFace.width;
     }
 
+    public static void setPlayerFaceWidth(int width) {
+        playerFace.width = width;
+    }
+
 
     /**
      * Move the player to a specific point.
@@ -176,19 +180,4 @@ public class Player {
         this.moveAmount = moveAmount;
     }
 
-    public int getMin() {
-        return min;
-    }
-
-    public void setMin(int min) {
-        this.min = min;
-    }
-
-    public int getMax() {
-        return max;
-    }
-
-    public void setMax(int max) {
-        this.max = max;
-    }
 }

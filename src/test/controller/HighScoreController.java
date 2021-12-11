@@ -1,7 +1,6 @@
 package test.controller;
 
 import test.model.HighScore;
-import test.view.HighScoreView;
 
 import java.io.*;
 
