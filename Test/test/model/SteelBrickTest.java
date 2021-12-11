@@ -53,8 +53,14 @@ class SteelBrickTest {
     @Test
     void impact() {
         steelBrick.impact();
-        assertEquals(0, steelBrick.getStrength());
-        assertTrue(steelBrick.isBroken());
+        if(steelBrick.getRnd().nextDouble() < SteelBrick.STEEL_PROBABILITY) {
+            assertEquals(0, steelBrick.getStrength());
+            assertTrue(steelBrick.isBroken());
+        }
+        else{
+            assertEquals(1, steelBrick.getStrength());
+            assertFalse(steelBrick.isBroken());
+        }
     }
 
     @Test

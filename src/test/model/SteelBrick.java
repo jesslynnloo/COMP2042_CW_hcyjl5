@@ -115,8 +115,4 @@ public class SteelBrick extends Brick {
         return rnd;
     }
 
-    public void setRnd(Random rnd) {
-        this.rnd = rnd;
-    }
-
 }
