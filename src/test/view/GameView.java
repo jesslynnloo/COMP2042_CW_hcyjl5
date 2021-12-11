@@ -358,6 +358,10 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         this.message = message;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     /**
      * Get the continueButtonRect.
      * @return A Rectangle value of continueButtonRect.

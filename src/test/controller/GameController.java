@@ -35,7 +35,7 @@ public class GameController {
     /**
      * Implement a game timer.
      */
-    public void timer () {
+    private void timer () {
         gameTimer = new Timer(10, e ->{
             view.getWall().move();
             view.getWall().findImpacts();
@@ -74,6 +74,7 @@ public class GameController {
         });
 
     }
+
 
     /**
      * Called when the window lost focus.
@@ -197,4 +198,9 @@ public class GameController {
         highScoreController.restartScore();
         Wall.getPlayer().resetPlayerFace();
     }
+
+    public GameView getView() {
+        return view;
+    }
+
 }
