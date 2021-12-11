@@ -67,7 +67,7 @@ public class Crack{
      * @param point The impact point on the brick.
      * @param direction The direction of the crack.
      */
-    protected void makeCrack(Point2D point, int direction){
+    public void makeCrack(Point2D point, int direction){
         Rectangle bounds = brick.getBrickFace().getBounds();
 
         Point impact = new Point((int)point.getX(),(int)point.getY());

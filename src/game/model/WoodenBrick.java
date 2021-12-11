@@ -44,7 +44,7 @@ public class WoodenBrick extends Brick {
      * @return The wooden brick shape.
      */
     @Override
-    protected Shape makeBrickFace(Point pos, Dimension size) {
+    public Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
