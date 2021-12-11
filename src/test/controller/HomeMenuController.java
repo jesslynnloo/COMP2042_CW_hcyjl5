@@ -108,12 +108,22 @@ public class HomeMenuController {
             homeMenuView.settingDefaultCursor();
     }
 
+
+
+
+
+
+
     /**
      * Get the value of startClicked.
      * @return A boolean value of startClicked.
      */
     public boolean isStartClicked() {
         return startClicked;
+    }
+
+    public void setStartClicked(boolean startClicked) {
+        this.startClicked = startClicked;
     }
 
     /**
@@ -124,11 +134,19 @@ public class HomeMenuController {
         return menuClicked;
     }
 
+    public void setMenuClicked(boolean menuClicked) {
+        this.menuClicked = menuClicked;
+    }
+
     /**
      * Get the value of infoClicked.
      * @return A boolean value of infoClicked.
      */
     public boolean isInfoClicked() {
         return infoClicked;
+    }
+
+    public void setInfoClicked(boolean infoClicked) {
+        this.infoClicked = infoClicked;
     }
 }
