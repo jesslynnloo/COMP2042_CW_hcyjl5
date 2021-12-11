@@ -1,12 +1,16 @@
 package test.model;
 
+import game.model.Ball;
+import game.model.CementBrick;
+import game.model.Crack;
+import game.model.RubberBall;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static test.model.Brick.DEF_CRACK_DEPTH;
-import static test.model.Brick.DEF_STEPS;
+import static game.model.Brick.DEF_CRACK_DEPTH;
+import static game.model.Brick.DEF_STEPS;
 
 class CementBrickTest {
     CementBrick cementBrick = new CementBrick(new Point(0,0), new Dimension(6,2));

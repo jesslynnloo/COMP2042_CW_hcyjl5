@@ -1,12 +1,13 @@
 package test.controller;
 
+import game.controller.GameController;
+import game.controller.HighScoreController;
 import org.junit.jupiter.api.Test;
-import test.model.HighScore;
-import test.model.Player;
-import test.model.Wall;
-import test.view.GameFrame;
-import test.view.GameView;
-import test.view.HighScoreView;
+import game.model.HighScore;
+import game.model.Player;
+import game.model.Wall;
+import game.view.GameFrame;
+import game.view.GameView;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;

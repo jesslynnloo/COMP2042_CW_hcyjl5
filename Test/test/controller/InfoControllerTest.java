@@ -1,8 +1,9 @@
 package test.controller;
 
+import game.controller.InfoController;
 import org.junit.jupiter.api.Test;
-import test.view.GameFrame;
-import test.view.InfoView;
+import game.view.GameFrame;
+import game.view.InfoView;
 
 import static org.junit.jupiter.api.Assertions.*;
 

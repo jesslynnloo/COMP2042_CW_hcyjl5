@@ -1,5 +1,9 @@
 package test.model;
 
+import game.model.Ball;
+import game.model.Crack;
+import game.model.RubberBall;
+import game.model.WoodenBrick;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;

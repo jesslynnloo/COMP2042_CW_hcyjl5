@@ -1,9 +1,12 @@
 package test.model;
 
+import game.model.Ball;
+import game.model.Crack;
+import game.model.RubberBall;
+import game.model.SteelBrick;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
