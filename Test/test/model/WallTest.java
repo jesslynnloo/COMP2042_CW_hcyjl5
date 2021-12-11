@@ -1,5 +1,6 @@
 package test.model;
 
+import game.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;

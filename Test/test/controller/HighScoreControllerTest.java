@@ -1,7 +1,8 @@
 package test.controller;
 
+import game.controller.HighScoreController;
 import org.junit.jupiter.api.Test;
-import test.model.HighScore;
+import game.model.HighScore;
 
 import static org.junit.jupiter.api.Assertions.*;
 

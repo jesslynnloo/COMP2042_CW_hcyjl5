@@ -1,7 +1,8 @@
 package test.controller;
 
+import game.controller.PlayerController;
 import org.junit.jupiter.api.Test;
-import test.model.Player;
+import game.model.Player;
 
 import java.awt.*;
 

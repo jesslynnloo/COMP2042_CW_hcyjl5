@@ -1,8 +1,9 @@
 package test.controller;
 
+import game.controller.HighScoreViewController;
 import org.junit.jupiter.api.Test;
-import test.view.GameFrame;
-import test.view.HighScoreView;
+import game.view.GameFrame;
+import game.view.HighScoreView;
 
 import static org.junit.jupiter.api.Assertions.*;
 

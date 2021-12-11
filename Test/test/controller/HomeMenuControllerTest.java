@@ -1,8 +1,9 @@
 package test.controller;
 
+import game.controller.HomeMenuController;
 import org.junit.jupiter.api.Test;
-import test.view.GameFrame;
-import test.view.HomeMenuView;
+import game.view.GameFrame;
+import game.view.HomeMenuView;
 
 import java.awt.*;
 
