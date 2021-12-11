@@ -3,7 +3,6 @@ package test.model;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
-import java.awt.geom.GeneralPath;
 
 import static org.junit.jupiter.api.Assertions.*;
 
