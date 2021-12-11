@@ -81,4 +81,8 @@ public class SpecialBrick extends Brick{
     public static void setExtendedWidth(int extendedWidth) {
         SpecialBrick.extendedWidth = extendedWidth;
     }
+
+    public static int getExtendedWidth() {
+        return extendedWidth;
+    }
 }
