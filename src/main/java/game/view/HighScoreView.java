@@ -22,8 +22,6 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
 
-
-
     private Rectangle restartButton;
     private Rectangle homeMenuButton;
     private Rectangle exitButton;
@@ -48,8 +46,6 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
 
     private Rectangle menuFace;
 
-
-
     private GameFrame owner;
 
     private HighScoreViewController highScoreViewController = new HighScoreViewController(this);
@@ -71,9 +67,7 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
         homeMenuButton = new Rectangle(btnDim);
         exitButton = new Rectangle(btnDim);
 
-
         buttonFont = new Font("Monospaced",Font.PLAIN,restartButton.height-2);
-
     }
 
     /**
@@ -98,7 +92,6 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
     public void paint(Graphics g){
         drawHighScoreView((Graphics2D)g);
     }
-
 
     /**
      * Draw the high score view.
@@ -131,7 +124,6 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
      */
     private void drawContainer(Graphics g){
         paintComponent(g);
-
     }
 
     /**
@@ -154,7 +146,6 @@ public class HighScoreView extends JComponent implements MouseListener, MouseMot
             g2d.drawImage(image, x, y, this);
         }
     }
-
 
     /**
      * Draw all the text in the high score window.

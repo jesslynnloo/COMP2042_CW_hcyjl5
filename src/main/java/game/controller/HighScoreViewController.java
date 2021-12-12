@@ -11,8 +11,6 @@ import java.awt.event.MouseEvent;
 public class HighScoreViewController {
     private HighScoreView highScoreView;
 
-
-
     private boolean restartClicked;
     private boolean homeMenuClicked;
     private boolean exitClicked;
@@ -26,11 +24,6 @@ public class HighScoreViewController {
     }
 
 
-
-
-
-
-
     /**
      * Get the value of restartClicked.
      * @return A boolean value of restartClicked.
@@ -39,6 +32,10 @@ public class HighScoreViewController {
         return restartClicked;
     }
 
+    /**
+     * Set the value of the variable restartClicked.
+     * @param restartClicked A boolean value containing the value for restartClicked.
+     */
     public void setRestartClicked(boolean restartClicked) {
         this.restartClicked = restartClicked;
     }
@@ -52,6 +49,10 @@ public class HighScoreViewController {
         return homeMenuClicked;
     }
 
+    /**
+     * Set the value of the variable homeMenuClicked.
+     * @param homeMenuClicked A boolean value containing the value for homeMenuClicked.
+     */
     public void setHomeMenuClicked(boolean homeMenuClicked) {
         this.homeMenuClicked = homeMenuClicked;
     }
@@ -64,6 +65,10 @@ public class HighScoreViewController {
         return exitClicked;
     }
 
+    /**
+     * Set the value of the variable exitClicked.
+     * @param exitClicked A boolean value containing the value for exitClicked.
+     */
     public void setExitClicked(boolean exitClicked) {
         this.exitClicked = exitClicked;
     }

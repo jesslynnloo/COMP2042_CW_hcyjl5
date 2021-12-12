@@ -1,6 +1,6 @@
 /*
  *  Brick Destroy - A simple Arcade video game
- *   Copyright (C) 2017  Filippo Ranza
+ *   Copyright (C) 2017  Jesslynn Loo Shi Lin
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,7 +21,6 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
-
 /**
  * This is the Wall class.
  */
@@ -38,19 +37,13 @@ public class Wall {
     private Random rnd;
     private Rectangle area;
 
-
-
     private Brick[] bricks;
     private Ball ball;
     private static Player player;
 
     private Brick[][] levels;
 
-
-
     private int level;
-
-
 
     private Point startPoint;
     private int brickCount;
@@ -94,8 +87,6 @@ public class Wall {
         player = new Player((Point) ballPos.clone(),150,10, drawArea);
 
         area = drawArea;
-
-
     }
 
     /**
@@ -373,8 +364,6 @@ public class Wall {
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
     }
 
-
-
     /**
      * Get the value of number of bricks, brickCount.
      * @return An int value of brickCount.
@@ -399,14 +388,26 @@ public class Wall {
         return ballLost;
     }
 
+    /**
+     * Set the value of the variable brickCount.
+     * @param brickCount An int value containing the value for brickCount.
+     */
     public void setBrickCount(int brickCount) {
         this.brickCount = brickCount;
     }
 
+    /**
+     * Set the value of the variable ballCount.
+     * @param ballCount An int value containing the value for ballCount.
+     */
     public void setBallCount(int ballCount) {
         this.ballCount = ballCount;
     }
 
+    /**
+     * Set the value of the variable ballLost.
+     * @param ballLost A boolean value containing the value for ballLost.
+     */
     public void setBallLost(boolean ballLost) {
         this.ballLost = ballLost;
     }
@@ -445,7 +446,6 @@ public class Wall {
         //ballCount = 3;
     }
 
-
     /**
      * Check if the there is no more ball.
      * If ballCount equals to 0, then return true.
@@ -474,8 +474,6 @@ public class Wall {
         bricks = levels[level++];
         this.brickCount = bricks.length;
     }
-
-
 
     /**
      * Check if there is any level left.
@@ -542,8 +540,6 @@ public class Wall {
         return  out;
     }
 
-
-
     /**
      * Get all the bricks.
      * @return A Brick array containing all the bricks.
@@ -552,6 +548,10 @@ public class Wall {
         return bricks;
     }
 
+    /**
+     * Set the value of the Brick array.
+     * @param bricks An array containing the value for the Brick array.
+     */
     public void setBricks(Brick[] bricks) {
         this.bricks = bricks;
     }
@@ -564,6 +564,10 @@ public class Wall {
         return ball;
     }
 
+    /**
+     * Set the value of the ball.
+     * @param ball A ball value containing the value for the ball.
+     */
     public void setBall(Ball ball) {
         this.ball = ball;
     }
@@ -576,10 +580,11 @@ public class Wall {
         return player;
     }
 
+    /**
+     * Set the value of the player.
+     * @param p A player value containing the value for the player.
+     */
     public static void setPlayer(Player p) {
         player = p;
     }
-
-
-
 }

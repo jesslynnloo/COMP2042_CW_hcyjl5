@@ -24,7 +24,6 @@ public class HomeMenuController {
         this.homeMenuView = homeMenuView;
     }
 
-
     /**
      * Do the corresponding action when the user clicks the buttons.
      * @param mouseEvent Event which indicates that a mouse action occurred.
@@ -104,12 +103,6 @@ public class HomeMenuController {
             homeMenuView.settingDefaultCursor();
     }
 
-
-
-
-
-
-
     /**
      * Get the value of startClicked.
      * @return A boolean value of startClicked.
@@ -118,6 +111,10 @@ public class HomeMenuController {
         return startClicked;
     }
 
+    /**
+     * Set the value of the variable startClicked.
+     * @param startClicked A boolean value containing the value for startClicked.
+     */
     public void setStartClicked(boolean startClicked) {
         this.startClicked = startClicked;
     }
@@ -130,6 +127,10 @@ public class HomeMenuController {
         return menuClicked;
     }
 
+    /**
+     * Set the value of the variable menuClicked.
+     * @param menuClicked A boolean value containing the value for menuClicked.
+     */
     public void setMenuClicked(boolean menuClicked) {
         this.menuClicked = menuClicked;
     }
@@ -142,6 +143,10 @@ public class HomeMenuController {
         return infoClicked;
     }
 
+    /**
+     * Set the value of the variable infoClicked.
+     * @param infoClicked A boolean value containing the value for infoClicked.
+     */
     public void setInfoClicked(boolean infoClicked) {
         this.infoClicked = infoClicked;
     }

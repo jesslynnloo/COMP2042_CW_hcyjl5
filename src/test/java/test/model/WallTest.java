@@ -23,7 +23,6 @@ class WallTest {
         assertEquals(new Ellipse2D.Double(305,435,10,10), wall.getBall().getBallFace());
     }
 
-    //Add on more test
     @Test
     void findImpacts() {
         Wall.getPlayer().moveTo(new Point(300, 430));
@@ -61,11 +60,6 @@ class WallTest {
     }
 
     @Test
-    void wallReset() {
-
-    }
-
-    @Test
     void ballEnd() {
         wall.setBallCount(3);
         assertFalse(wall.ballEnd());
@@ -75,14 +69,6 @@ class WallTest {
     void isDone() {
         wall.setBrickCount(30);
         assertFalse(wall.isDone());
-    }
-
-    @Test
-    void nextLevel() {
-    }
-
-    @Test
-    void hasLevel() {
     }
 
     @Test
@@ -119,6 +105,45 @@ class WallTest {
 
     @Test
     void getPlayer() {
+        Player player = new Player(new Point(300,430),150,10, new Rectangle(0,0,600,450));
+        Wall.setPlayer(player);
+        assertEquals(player, Wall.getPlayer());
+    }
+
+    @Test
+    void setBrickCount() {
+        wall.setBrickCount(30);
+        assertEquals(30, wall.getBrickCount());
+    }
+
+    @Test
+    void setBallCount() {
+        wall.setBallCount(3);
+        assertEquals(3, wall.getBallCount());
+    }
+
+    @Test
+    void setBallLost() {
+        wall.setBallLost(false);
+        assertFalse(wall.isBallLost());
+    }
+
+    @Test
+    void setBricks() {
+        Brick[] bricks = new CementBrick[20];
+        wall.setBricks(bricks);
+        assertEquals(bricks, wall.getBricks());
+    }
+
+    @Test
+    void setBall() {
+        Ball ball = new RubberBall(new Point(300, 430));
+        wall.setBall(ball);
+        assertEquals(ball.toString(), wall.getBall().toString());
+    }
+
+    @Test
+    void setPlayer() {
         Player player = new Player(new Point(300,430),150,10, new Rectangle(0,0,600,450));
         Wall.setPlayer(player);
         assertEquals(player, Wall.getPlayer());

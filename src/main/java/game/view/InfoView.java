@@ -18,12 +18,10 @@ import java.util.Objects;
  */
 public class InfoView extends JComponent implements MouseListener, MouseMotionListener {
 
-
     private GameFrame owner;
 
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
-
 
     private Rectangle backButton;
 
@@ -39,6 +37,15 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
     private static final String info5 = "5. ESC enter/exit pause menu.";
     private static final String info6 = "6. ALT+SHITF+F1 open console.";
     private static final String info7 = "7. The game automatically pause if the frame loses focus.";
+    private static final String info8 = "8. The player face's width will be decreased by 20 every minute.";
+    private static final String info9 = "9. The green brick is the special brick, which will";
+    private static final String info10 = "     increase the player face's width by 50.";
+    private static final String info11 = "10. User will not be awarded any point if he hit the";
+    private static final String info12 = "      special brick.";
+    private static final String info13 = "11. 10 points for breaking clay brick.";
+    private static final String info14 = "12. 20 points for breaking cement brick.";
+    private static final String info15 = "13. 30 points for breaking steel brick.";
+    private static final String info16 = "14. 15 points for breaking wooden brick.";
 
     private static final Color BG_COLOR = Color.WHITE.darker();
     private static final Color TEXT_COLOR = new Color(101, 67, 33);//egyptian blue
@@ -65,14 +72,13 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
         this.owner = owner;
         this.initialize();
 
-
         menuFace = new Rectangle(new Point(0,0),new Dimension(DEF_WIDTH,DEF_HEIGHT));
 
         Dimension btnDim = new Dimension(DEF_WIDTH / 5, DEF_HEIGHT / 15);
         backButton = new Rectangle(btnDim);
 
         titleFont = new Font("Noto Mono",Font.PLAIN,25);
-        infoFont = new Font("Merlin", Font.PLAIN, 20);
+        infoFont = new Font("Merlin", Font.PLAIN, 17);
         buttonFont = new Font("Monospaced",Font.PLAIN,backButton.height-2);
     }
 
@@ -136,7 +142,6 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
      */
     private void drawContainer(Graphics g){
         paintComponent(g);
-
     }
 
     /**
@@ -173,8 +178,15 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
         drawText(g2d, infoFont, info5);
         drawText(g2d, infoFont, info6);
         drawText(g2d, infoFont, info7);
-
-
+        drawText(g2d, infoFont, info8);
+        drawText(g2d, infoFont, info9);
+        drawText(g2d, infoFont, info10);
+        drawText(g2d, infoFont, info11);
+        drawText(g2d, infoFont, info12);
+        drawText(g2d, infoFont, info13);
+        drawText(g2d, infoFont, info14);
+        drawText(g2d, infoFont, info15);
+        drawText(g2d, infoFont, info16);
     }
 
     /**
@@ -191,20 +203,17 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
 
         int sX;
 
-
-
         if(text.equals(INFO_TEXT)){
             sX = (int)(menuFace.getWidth() - textRect.getWidth()) / 2;
             stringHeight = (int)(menuFace.getHeight() / 12);
         }
         else{
             sX = (int)(menuFace.getWidth()) / 10;
-            stringHeight += (int) textRect.getHeight() * 2;//add 10% of String height between the two strings
+            stringHeight += (int) textRect.getHeight();//add 10% of String height between the two strings
         }
 
         g2d.setFont(font);
         g2d.drawString(text,sX,stringHeight);
-
     }
 
     /**
@@ -344,5 +353,4 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
     public GameFrame getOwner() {
         return owner;
     }
-
 }

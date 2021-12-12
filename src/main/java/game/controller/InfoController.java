@@ -10,9 +10,6 @@ import java.awt.event.MouseEvent;
  */
 public class InfoController {
     private InfoView infoView;
-
-
-
     private boolean backClicked;
 
     /**
@@ -32,7 +29,6 @@ public class InfoController {
         if(infoView.getBackButton().contains(p)){
             infoView.getOwner().enableHomeMenuFromInfo();
         }
-
     }
 
     /**
@@ -70,8 +66,6 @@ public class InfoController {
             infoView.settingDefaultCursor();
     }
 
-
-
     /**
      * Get the value of backClicked.
      * @return A boolean value of backClicked.
@@ -80,6 +74,10 @@ public class InfoController {
         return backClicked;
     }
 
+    /**
+     * Set the value of the variable backClicked.
+     * @param backClicked A boolean value containing the value for backClicked.
+     */
     public void setBackClicked(boolean backClicked) {
         this.backClicked = backClicked;
     }

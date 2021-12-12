@@ -1,6 +1,6 @@
 /*
  *  Brick Destroy - A simple Arcade video game
- *   Copyright (C) 2017  Filippo Ranza
+ *   Copyright (C) 2017  Jesslynn Loo Shi Lin
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -24,14 +24,12 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-
 /**
  * This is the DebugPanel class which extends JPanel.
  */
 public class DebugPanel extends JPanel {
 
     private static final Color DEF_BKG = Color.WHITE;
-
 
     private JButton skipLevel;
     private JButton resetBalls;
@@ -115,5 +113,4 @@ public class DebugPanel extends JPanel {
         ballXSpeed.setValue(x);
         ballYSpeed.setValue(y);
     }
-
 }

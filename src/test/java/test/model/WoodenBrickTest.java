@@ -1,7 +1,6 @@
 package test.model;
 
 import game.model.Ball;
-import game.model.Crack;
 import game.model.RubberBall;
 import game.model.WoodenBrick;
 import org.junit.jupiter.api.Test;
@@ -12,16 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WoodenBrickTest {
     WoodenBrick woodenBrick = new WoodenBrick(new Point(0,0), new Dimension(6,2));
-
-    @Test
-    void setImpact() {
-        if(woodenBrick.getRnd().nextDouble() < WoodenBrick.WOODEN_PROBABILITY) {
-            assertTrue(woodenBrick.setImpact(new Point(3, 1), Crack.DOWN));
-        }
-        else{
-            assertFalse(woodenBrick.setImpact(new Point(3,1), Crack.DOWN));
-        }
-    }
 
     @Test
     void getBorderColor() {
@@ -51,19 +40,6 @@ class WoodenBrickTest {
     void repair() {
         woodenBrick.repair();
         assertEquals(new Rectangle(new Point(0,0), new Dimension(6,2)), woodenBrick.getBrickFace());
-    }
-
-    @Test
-    void impact() {
-        woodenBrick.impact();
-        if(woodenBrick.getRnd().nextDouble() < WoodenBrick.WOODEN_PROBABILITY) {
-            assertEquals(0, woodenBrick.getStrength());
-            assertTrue(woodenBrick.isBroken());
-        }
-        else{
-            assertEquals(1, woodenBrick.getStrength());
-            assertFalse(woodenBrick.isBroken());
-        }
     }
 
     @Test

@@ -14,16 +14,6 @@ class SteelBrickTest {
     SteelBrick steelBrick = new SteelBrick(new Point(0,0), new Dimension(6,2));
 
     @Test
-    void setImpact() {
-        if(steelBrick.getRnd().nextDouble() < SteelBrick.STEEL_PROBABILITY) {
-            assertTrue(steelBrick.setImpact(new Point(3, 1), Crack.DOWN));
-        }
-        else{
-            assertFalse(steelBrick.setImpact(new Point(3,1), Crack.DOWN));
-        }
-    }
-
-    @Test
     void getBorderColor() {
         assertEquals("java.awt.Color[r=0,g=0,b=0]", steelBrick.getBorderColor().toString());
     }
@@ -51,19 +41,6 @@ class SteelBrickTest {
     void repair() {
         steelBrick.repair();
         assertEquals(new Rectangle(new Point(0,0), new Dimension(6,2)), steelBrick.getBrickFace());
-    }
-
-    @Test
-    void impact() {
-        steelBrick.impact();
-        if(steelBrick.getRnd().nextDouble() < SteelBrick.STEEL_PROBABILITY) {
-            assertEquals(0, steelBrick.getStrength());
-            assertTrue(steelBrick.isBroken());
-        }
-        else{
-            assertEquals(1, steelBrick.getStrength());
-            assertFalse(steelBrick.isBroken());
-        }
     }
 
     @Test

@@ -90,4 +90,16 @@ class PlayerTest {
         assertEquals(new Rectangle(new Point(225,430), new Dimension(150,10)), Player.getPlayerFace());
 
     }
+
+    @Test
+    void getMoveAmount() {
+        player.setMoveAmount(5);
+        assertEquals(5, player.getMoveAmount());
+    }
+
+    @Test
+    void setMoveAmount() {
+        player.setMoveAmount(5);
+        assertEquals(5, player.getMoveAmount());
+    }
 }

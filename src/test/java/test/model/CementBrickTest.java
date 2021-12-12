@@ -14,7 +14,6 @@ import static game.model.Brick.DEF_STEPS;
 
 class CementBrickTest {
     CementBrick cementBrick = new CementBrick(new Point(0,0), new Dimension(6,2));
-//    Ball b = new RubberBall();
     Crack crack =  new Crack(cementBrick, DEF_CRACK_DEPTH,DEF_STEPS);
 
     @Test

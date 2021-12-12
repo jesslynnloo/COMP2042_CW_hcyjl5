@@ -1,6 +1,6 @@
 /*
  *  Brick Destroy - A simple Arcade video game
- *   Copyright (C) 2017  Filippo Ranza
+ *   Copyright (C) 2017  Jesslynn Loo Shi Lin
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -30,7 +30,6 @@ import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.util.Objects;
 
-
 /**
  * This is the HomeMenuView class which extends JComponent and implements MouseListener and MouseMotionListener interface.
  */
@@ -50,12 +49,8 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 
     private Rectangle menuFace;
 
-
-
     private Rectangle startButton;
     private Rectangle menuButton;
-
-
 
     private Rectangle infoButton;
 
@@ -148,7 +143,6 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
      */
     private void drawContainer(Graphics g){
         paintComponent(g);
-
     }
 
     /**
@@ -360,7 +354,6 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     public GameFrame getOwner() {
         return owner;
     }
-
 
     /**
      * Repaint the button.

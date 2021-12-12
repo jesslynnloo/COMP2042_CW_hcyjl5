@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
-
 /**
  * This is the GameFrame class which extends JFrame and implements WindowFocusListener interface.
  */
@@ -52,8 +51,6 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.add(homeMenuView,BorderLayout.CENTER);
 
         this.setUndecorated(true);
-
-
     }
 
     /**
@@ -188,7 +185,6 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setLocation(x,y);
     }
 
-
     /**
      * Set gaming to true when the window gains focus.
      * @param windowEvent A low-level event that indicates that a window has changed its status.
@@ -215,6 +211,5 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void windowLostFocus(WindowEvent windowEvent) {
         if(gaming)
             gameController.onLostFocus();
-
     }
 }

@@ -11,7 +11,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 
-
 /**
  * This is the GameView class which extends JComponent and implements KeyListener, MouseListener and MouseMotionListener interface.
  */
@@ -23,7 +22,6 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
     private static final String PAUSE = "Pause Menu";
     private static final int TEXT_SIZE = 30;
     private static final Color MENU_COLOR = new Color(0,255,0);
-
 
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
@@ -40,7 +38,6 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
     private Rectangle exitButtonRect;
     private Rectangle restartButtonRect;
     private int strLen;
-
 
     private GameFrame owner;
 
@@ -78,7 +75,6 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         wall.nextLevel();
     }
 
-
     /**
      * Initialize the frame.
      * Set the preferred size of the frame.
@@ -93,7 +89,6 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
     }
-
 
     /**
      * Paint all the components, message, ball, player and pause menu if the showPauseMenu is true.
@@ -298,7 +293,6 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         gameController.checkKeyReleased(keyEvent);
     }
 
-
     /**
      * Call the checkMouseClicked method in GameController class when mouse is clicked.
      * @param mouseEvent An event which indicates that a mouse action occurred in the component.
@@ -358,6 +352,10 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         this.message = message;
     }
 
+    /**
+     * Get the message.
+     * @return A String value of message.
+     */
     public String getMessage() {
         return message;
     }
@@ -402,7 +400,6 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
         return owner;
     }
 
-
     /**
      * Set the cursor to the hand cursor.
      */
@@ -416,6 +413,4 @@ public class GameView extends JComponent implements KeyListener,MouseListener,Mo
     public void setDefaultCursor () {
         this.setCursor(Cursor.getDefaultCursor());
     }
-
-
 }

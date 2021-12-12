@@ -66,6 +66,10 @@ public class GameController {
                 }
                 else{
                     view.setMessage("ALL WALLS DESTROYED");
+                    highScoreController.updateHighScore();
+                    System.out.println(HighScore.getHighScore());
+                    highScoreController.writeScoreToFile();
+                    view.getOwner().enableHighScoreView();
                     gameTimer.stop();
                 }
             }
@@ -199,6 +203,10 @@ public class GameController {
         Wall.getPlayer().resetPlayerFace();
     }
 
+    /**
+     * Get the game view.
+     * @return A GameView value of view.
+     */
     public GameView getView() {
         return view;
     }
