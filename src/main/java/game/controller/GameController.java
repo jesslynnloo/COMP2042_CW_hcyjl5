@@ -66,6 +66,7 @@ public class GameController {
                 }
                 else{
                     view.setMessage("ALL WALLS DESTROYED");
+                    view.getOwner().enableHighScoreView();
                     gameTimer.stop();
                 }
             }
