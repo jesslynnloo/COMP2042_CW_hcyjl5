@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
-
 /**
  * This is the ClayBrick class which extends Brick.
  */

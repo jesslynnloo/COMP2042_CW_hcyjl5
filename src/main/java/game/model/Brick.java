@@ -5,7 +5,6 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
-
 /**
  * This is the Brick class.
  */
@@ -14,15 +13,10 @@ abstract public class Brick  {
     public static final int DEF_CRACK_DEPTH = 1;
     public static final int DEF_STEPS = 35;
 
-
     public static final int UP_IMPACT = 100;
     public static final int DOWN_IMPACT = 200;
     public static final int LEFT_IMPACT = 300;
     public static final int RIGHT_IMPACT = 400;
-
-
-
-
 
     private static Random rnd;
 
@@ -141,8 +135,6 @@ abstract public class Brick  {
         strength = fullStrength;
     }
 
-
-
     /**
      * Minus the strength of the brick by 1 and check if the brick is broken.
      * Update the broken variable.
@@ -161,10 +153,18 @@ abstract public class Brick  {
         return brickFace;
     }
 
+    /**
+     * Get the value of strength.
+     * @return An int value of strength.
+     */
     public int getStrength() {
         return strength;
     }
 
+    /**
+     * Set the value of the variable strength.
+     * @param strength An int value containing the value for strength.
+     */
     public void setStrength(int strength) {
         this.strength = strength;
     }

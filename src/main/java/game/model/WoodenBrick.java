@@ -36,7 +36,6 @@ public class WoodenBrick extends Brick {
         highScoreController = new HighScoreController();
     }
 
-
     /**
      * Make the shape of the brick.
      * @param pos  The position of the brick.
@@ -90,8 +89,11 @@ public class WoodenBrick extends Brick {
         }
     }
 
+    /**
+     * Get the random number.
+     * @return A Random value of rnd.
+     */
     public Random getRnd() {
         return rnd;
     }
-
 }

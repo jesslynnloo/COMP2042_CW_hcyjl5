@@ -1,6 +1,6 @@
 /*
  *  Brick Destroy - A simple Arcade video game
- *   Copyright (C) 2017  Filippo Ranza
+ *   Copyright (C) 2017  Jesslynn Loo Shi Lin
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,12 +19,10 @@ package game.model;
 
 import java.awt.*;
 
-
 /**
  * This is the Player class.
  */
 public class Player {
-
 
     public static final Color BORDER_COLOR = Color.GREEN.darker().darker();
     public static final Color INNER_COLOR = Color.GREEN;
@@ -34,17 +32,10 @@ public class Player {
     private static Rectangle playerFace;
 
     private Point ballPoint;
-
-
-
     private int moveAmount;
-
-
-
     private int min;
     private int max;
     private Rectangle container;
-
 
     /**
      * Class constructor.
@@ -63,7 +54,6 @@ public class Player {
         playerFace = makeRectangle(width, height);
         min = container.x + (width / 2);
         max = min + container.width - width;
-
     }
 
     /**
@@ -158,10 +148,13 @@ public class Player {
         return playerFace.width;
     }
 
+    /**
+     * Set the value of the player face's width.
+     * @param width An int value containing the value for player face's width.
+     */
     public static void setPlayerFaceWidth(int width) {
         playerFace.width = width;
     }
-
 
     /**
      * Move the player to a specific point.
@@ -172,10 +165,18 @@ public class Player {
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
 
+    /**
+     * Get the move amount.
+     * @return An int value of the move amount.
+     */
     public int getMoveAmount() {
         return moveAmount;
     }
 
+    /**
+     * Set the value of the move amount.
+     * @param moveAmount An int value containing the value for the move amount.
+     */
     public void setMoveAmount(int moveAmount) {
         this.moveAmount = moveAmount;
     }

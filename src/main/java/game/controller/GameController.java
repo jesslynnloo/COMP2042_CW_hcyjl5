@@ -200,6 +200,10 @@ public class GameController {
         Wall.getPlayer().resetPlayerFace();
     }
 
+    /**
+     * Get the game view.
+     * @return A GameView value of view.
+     */
     public GameView getView() {
         return view;
     }

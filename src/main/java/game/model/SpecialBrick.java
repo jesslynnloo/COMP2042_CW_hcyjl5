@@ -15,7 +15,6 @@ public class SpecialBrick extends Brick{
     private static final Color DEF_BORDER = new Color(255,255,180);
     private static final int SPECIAL_BRICK_STRENGTH = 1;
 
-
     private static int extendedWidth;
 
     /**
@@ -26,7 +25,6 @@ public class SpecialBrick extends Brick{
     public SpecialBrick(Point point, Dimension size) {
         super(NAME,point,size,DEF_BORDER,DEF_INNER,SPECIAL_BRICK_STRENGTH);
     }
-
 
     /**
      * Make the shape of the brick.
@@ -79,6 +77,10 @@ public class SpecialBrick extends Brick{
         SpecialBrick.extendedWidth = extendedWidth;
     }
 
+    /**
+     * Get the value of the extendedWidth.
+     * @return An int value of the extendedWidth.
+     */
     public static int getExtendedWidth() {
         return extendedWidth;
     }

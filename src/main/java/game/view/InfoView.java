@@ -18,12 +18,10 @@ import java.util.Objects;
  */
 public class InfoView extends JComponent implements MouseListener, MouseMotionListener {
 
-
     private GameFrame owner;
 
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
-
 
     private Rectangle backButton;
 
@@ -73,7 +71,6 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
     public InfoView(GameFrame owner) {
         this.owner = owner;
         this.initialize();
-
 
         menuFace = new Rectangle(new Point(0,0),new Dimension(DEF_WIDTH,DEF_HEIGHT));
 
@@ -145,7 +142,6 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
      */
     private void drawContainer(Graphics g){
         paintComponent(g);
-
     }
 
     /**
@@ -191,8 +187,6 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
         drawText(g2d, infoFont, info14);
         drawText(g2d, infoFont, info15);
         drawText(g2d, infoFont, info16);
-
-
     }
 
     /**
@@ -209,8 +203,6 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
 
         int sX;
 
-
-
         if(text.equals(INFO_TEXT)){
             sX = (int)(menuFace.getWidth() - textRect.getWidth()) / 2;
             stringHeight = (int)(menuFace.getHeight() / 12);
@@ -222,7 +214,6 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
 
         g2d.setFont(font);
         g2d.drawString(text,sX,stringHeight);
-
     }
 
     /**
@@ -362,5 +353,4 @@ public class InfoView extends JComponent implements MouseListener, MouseMotionLi
     public GameFrame getOwner() {
         return owner;
     }
-
 }

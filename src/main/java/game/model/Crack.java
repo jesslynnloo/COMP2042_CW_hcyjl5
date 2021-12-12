@@ -20,15 +20,12 @@ public class Crack{
     public static final int VERTICAL = 100;
     public static final int HORIZONTAL = 200;
 
-
-
     private GeneralPath crack;
 
     private int crackDepth;
     private int steps;
     private Brick brick;
     private Random random;
-
 
     /**
      * Class constructor.
@@ -44,7 +41,6 @@ public class Crack{
         this.steps = steps;
 
     }
-
 
     /**
      * Draw the crack.
@@ -153,7 +149,6 @@ public class Crack{
         random = new Random();
         return random.nextInt(n) - bound;
     }
-
 
     /**
      * Check if it is in the middle.

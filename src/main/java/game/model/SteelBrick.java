@@ -1,6 +1,6 @@
 /*
  *  Brick Destroy - A simple Arcade video game
- *   Copyright (C) 2017  Filippo Ranza
+ *   Copyright (C) 2017  Jesslynn Loo Shi Lin
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -23,7 +23,6 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
-
 /**
  * This is the SteelBrick class which extends Brick class.
  */
@@ -35,8 +34,6 @@ public class SteelBrick extends Brick {
     private static final int STEEL_STRENGTH = 1;
     public static final double STEEL_PROBABILITY = 0.4;
     private static final int SCORE_FOR_STEEL_BRICK = 30;
-
-
 
     private Random rnd;
     private Shape brickFace;
@@ -55,7 +52,6 @@ public class SteelBrick extends Brick {
         brickFace = super.getBrickFace();
         highScoreController = new HighScoreController();
     }
-
 
     /**
      * Make the shape of the brick.
@@ -110,6 +106,10 @@ public class SteelBrick extends Brick {
         }
     }
 
+    /**
+     * Get the random number.
+     * @return A Random value of rnd.
+     */
     public Random getRnd() {
         return rnd;
     }
