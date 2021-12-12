@@ -53,7 +53,7 @@ public class HighScoreController {
      */
     private void createFile () throws IOException {
         file  = new File("score.txt");
-        boolean result = file.createNewFile();
+        boolean score = file.createNewFile();
     }
 
     /**
@@ -63,24 +63,23 @@ public class HighScoreController {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line = reader.readLine();
-            while (line != null)                 // read the score file line by line
+            while (line != null)
             {
                 try {
-                    int score = Integer.parseInt(line.trim());   // parse each line as an int
-                    if (score > HighScore.getHighScore())                       // and keep track of the largest
+                    int score = Integer.parseInt(line.trim());
+                    if (score > HighScore.getHighScore())
                     {
                         HighScore.setHighScore(score);
                     }
                 } catch (NumberFormatException e1) {
-                    // ignore invalid scores
-                    //System.err.println("ignoring invalid score: " + line);
+                    System.err.println("This score is invalid: " + line);
                 }
                 line = reader.readLine();
             }
             reader.close();
 
         } catch (IOException ex) {
-            System.err.println("ERROR reading scores from file");
+            System.err.println("Error occurred.");
         }
     }
 
@@ -89,13 +88,13 @@ public class HighScoreController {
      */
     public void writeScoreToFile () {
         try {
-            BufferedWriter output = new BufferedWriter(new FileWriter(file, true));
-            output.newLine();
-            output.append("" + HighScore.getSCORE());
-            output.close();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+            writer.newLine();
+            writer.append("" + HighScore.getSCORE());
+            writer.close();
 
         } catch (IOException ex1) {
-            System.out.printf("ERROR writing score to file: %s\n", ex1);
+            System.out.printf("Error occurred.");
         }
     }
 }
