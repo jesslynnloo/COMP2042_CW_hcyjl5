@@ -89,9 +89,15 @@ public class HighScoreController {
     public void writeScoreToFile () {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-            writer.newLine();
-            writer.append("" + HighScore.getSCORE());
-            writer.close();
+            if(file.length() == 0){
+                writer.append("" + HighScore.getSCORE());
+                writer.close();
+            }
+            else {
+                writer.newLine();
+                writer.append("" + HighScore.getSCORE());
+                writer.close();
+            }
 
         } catch (IOException ex1) {
             System.out.printf("Error occurred.");
